@@ -21,7 +21,7 @@ void Map::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
 }
 */
 
-Map::Map(COORD size)
+Map::Map(const COORD &size)
 {
 	const std::vector<std::vector<CellZ> > vec(size.Y, std::vector<CellZ>(size.X));
 	cellsZ = vec;

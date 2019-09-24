@@ -18,7 +18,7 @@ private:
 	
 public:
 	
-	Map(COORD size);
+	Map(const COORD &size);
 
 	CellZ*  getCellZ(const int &x, const int &y);
 	
