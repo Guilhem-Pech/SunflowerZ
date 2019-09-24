@@ -23,6 +23,34 @@ void Map::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
 
 Map::Map(COORD size)
 {
-
+	const std::vector<std::vector<CellZ> > vec(size.Y, std::vector<CellZ>(size.X));
+	cellsZ = vec;
 }
+
+CellZ* Map::getCellZ(const int &x, const int &y)
+{
+	return &cellsZ[x][y];
+}
+
+template <class T>
+CellZ random_element(const std::vector<T> &vec)
+{
+	std::random_device seed;
+	std::mt19937 engine(seed());
+	std::uniform_int_distribution<int> choose(0, vec.size() - 1);
+	return vec[choose(engine)];
+}
+
+CellZ* Map::getGoundCellZ(const int& y1)
+{
+	std::vector<CellZ> *suitable = new std::vector<CellZ>();
+	for (CellZ e : cellsZ[y1])
+		if (e.getTypeName() == "ground")
+			suitable->push_back(e);
+
+	if (suitable->size() <= 0)
+		return nullptr;	
+	return &random_element(*suitable);
+}
+
 
