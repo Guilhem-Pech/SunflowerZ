@@ -3,6 +3,8 @@
 #include <Windows.h>
 #include <iostream>
 #include "Map.h"
+#include "CellZ.h"
+#include "AirCellZ.h"
 #define SCREEN_WIDTH 100
 #define SCREEN_HEIGHT 40
 COORD dwBufferSize = { SCREEN_WIDTH,SCREEN_HEIGHT };
@@ -28,11 +30,15 @@ int main()
 	ReadConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize,dwBufferCoord, &rcRegion);
 	
 	
+	CellZ *c = new CellZ({ 0,0 });
+	AirCellZ *a = new AirCellZ({0,0});
+
 	
+	std::cout << c->getTypeName() << std::endl << a->getTypeName();
 
 	while (1) {
 		
-		Map *m = new Map({40,100});
+		//Map *m = new Map({40,100});
 		/*
 		for (sunflower m : list)
 			m->calc(bufferConsole);
@@ -43,7 +49,7 @@ int main()
 		
 		barreAction->calc(bufferBar);
 		*/
-		WriteConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize, dwBufferCoord, &rcRegion);
+		//WriteConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize, dwBufferCoord, &rcRegion);
 		
 	}
 }

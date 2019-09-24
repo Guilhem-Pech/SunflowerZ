@@ -1,21 +1,23 @@
 #pragma once
 #include <Windows.h>
+#include <string>
 
+typedef std::string string;
 
 class CellZ
 {
 private:
-	COORD pos;
-	char sprite;
+	char sprite;	
+	COORD pos{};
+protected:
 	WORD attributes;
-	
 public:
-	CellZ(const COORD &position,const WORD &attributes ,const char & sprite);
+	virtual ~CellZ() = default;
+
+	CellZ(const COORD &position, const char &sprite = ' ');
 	void setSprite(const char &c);
-	void setAttributes(const WORD &c);
 	void setPos(const COORD &newCoordinates);
 	COORD getPos() const;
-	
-	~CellZ();
+	virtual string getTypeName();
 };
 

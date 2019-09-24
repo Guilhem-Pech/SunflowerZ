@@ -4,24 +4,19 @@
 
 
 
-CellZ::CellZ(const COORD &position, const WORD &attributes, const char & sprite)
+CellZ::CellZ(const COORD &position, const char &sprite)
 {
 	this->pos = position;
-	this->attributes = attributes;
 	this->sprite = sprite;
+	this->attributes = 0x00E0;
 }
-
 
 
 void CellZ::setSprite(const char& c)
 {
-	this->sprite = c;
+	CellZ::sprite = c;
 }
 
-void CellZ::setAttributes(const WORD& c)
-{
-	this->attributes = c;
-}
 
 void CellZ::setPos(const COORD &newCoordinates)
 {
@@ -33,6 +28,7 @@ COORD CellZ::getPos() const
 	return this->pos;
 }
 
-
-CellZ::~CellZ()
-= default;
+string CellZ::getTypeName()
+{
+	return "Undefined";
+}
