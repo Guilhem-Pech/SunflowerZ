@@ -1,5 +1,5 @@
 #pragma once
-#include <wincontypes.h>
+
 #include <Windows.h>
 #define SCREEN_WIDTH 100
 #define SCREEN_HEIGHT 40

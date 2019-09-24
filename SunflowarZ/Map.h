@@ -7,7 +7,7 @@
 class Map
 {
 public:
-	void calc(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]);
-	Map(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]);
+	void calc(CHAR_INFO buffer[40][100]);
+	Map(CHAR_INFO buffer[40][100]);
 	
 };
