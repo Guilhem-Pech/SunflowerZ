@@ -2,20 +2,17 @@
 #include <Windows.h>
 
 
-enum CellType { air, ground, rock };
-
 class CellZ
 {
 private:
 	COORD pos;
 	char sprite;
 	WORD attributes;
-	CellType typeOfCellZ;
 	
 public:
-	CellZ(const COORD &position, const CellType &typeOfCellZ);
-	void setType(const CellType &c);
-	bool isType(const CellType &of) const;
+	CellZ(const COORD &position,const WORD &attributes ,const char & sprite);
+	void setSprite(const char &c);
+	void setAttributes(const WORD &c);
 	void setPos(const COORD &newCoordinates);
 	COORD getPos() const;
 	

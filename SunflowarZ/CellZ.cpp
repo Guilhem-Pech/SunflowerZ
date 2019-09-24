@@ -4,20 +4,23 @@
 
 
 
-CellZ::CellZ(const COORD &position, const CellType &typeOfCellZ)
+CellZ::CellZ(const COORD &position, const WORD &attributes, const char & sprite)
 {
 	this->pos = position;
-	this->typeOfCellZ = typeOfCellZ;
+	this->attributes = attributes;
+	this->sprite = sprite;
 }
 
-void CellZ::setType(const CellType &c)
+
+
+void CellZ::setSprite(const char& c)
 {
-	this->typeOfCellZ = c;
+	this->sprite = c;
 }
 
-bool CellZ::isType(const CellType &of) const
+void CellZ::setAttributes(const WORD& c)
 {
-	return of == this->typeOfCellZ;
+	this->attributes = c;
 }
 
 void CellZ::setPos(const COORD &newCoordinates)
