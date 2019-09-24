@@ -21,6 +21,7 @@ public:
 	Map(const COORD &size);
 
 	CellZ*  getCellZ(const int &x, const int &y);
-	
+	void fillMap(const COORD& size);
+
 	CellZ* getGoundCellZ(const int &y1 );
 };

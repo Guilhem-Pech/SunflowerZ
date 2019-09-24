@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include "Map.h"
+#include <random>
 
 
 /*
@@ -32,8 +33,17 @@ CellZ* Map::getCellZ(const int &x, const int &y)
 	return &cellsZ[x][y];
 }
 
-template <class T>
-CellZ random_element(const std::vector<T> &vec)
+void Map::fillMap(const COORD & size)
+{
+	// Fill the map with air
+	for (short y = 0; y < size.Y; ++y) {
+		for (short x = 0; x < size.X; ++x) {
+			cellsZ[y][x] = AirCellZ({x,y});
+		}
+	}
+}
+
+CellZ random_element(const std::vector<CellZ> &vec)
 {
 	std::random_device seed;
 	std::mt19937 engine(seed());
@@ -48,7 +58,7 @@ CellZ* Map::getGoundCellZ(const int& y1)
 		if (e.getTypeName() == "ground")
 			suitable->push_back(e);
 
-	if (suitable->size() <= 0)
+	if (suitable->empty())
 		return nullptr;	
 	return &random_element(*suitable);
 }

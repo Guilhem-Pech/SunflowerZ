@@ -1,8 +1,14 @@
 #include "pch.h"
 #include "CellZ.h"
+#include <iostream>
 
 
-
+CellZ::CellZ()
+{
+	this->pos = {0,0};
+	this->sprite = ' ';
+	this->attributes = 0x00E0;
+}
 
 CellZ::CellZ(const COORD &position, const char &sprite)
 {

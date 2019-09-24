@@ -14,6 +14,7 @@ protected:
 public:
 	virtual ~CellZ() = default;
 
+	CellZ();
 	CellZ(const COORD &position, const char &sprite = ' ');
 	void setSprite(const char &c);
 	void setPos(const COORD &newCoordinates);
