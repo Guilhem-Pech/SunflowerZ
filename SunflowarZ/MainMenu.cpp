@@ -1,19 +1,18 @@
 #include "pch.h"
 #include "MainMenu.h"
-
+#define SCREEN_WIDTH 100
+#define SCREEN_HEIGHT 40
 
 
 MainMenu::MainMenu(const COORD & size, const COORD & pos)
 {
-	this->size = size;
-	this->pos = pos;
-	
+	this->pos = pos;	
 }
 
 void MainMenu::calcMenu()
 {
-	SMALL_RECT rcRegion = { pos.X, pos.Y,  pos.X + size.X, pos.Y + size.Y};
-	CHAR_INFO menuZ[size.X][size.Y] = { 0 };
+	SMALL_RECT rcRegion = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
+	CHAR_INFO MenuBuffer[SCREEN_HEIGHT][SCREEN_WIDTH] = { 0 };
 }
 
 MainMenu::~MainMenu()
