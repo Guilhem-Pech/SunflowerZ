@@ -32,8 +32,18 @@ int main()
 
 	while (1) {
 		
-		new Map(bufferConsole);
+		Map *m = new Map({40,100});
+		/*
+		for (sunflower m : list)
+			m->calc(bufferConsole);
 		
+
+		for (projectile p : listP)
+			p->calc(bufferConsole);
+		
+		barreAction->calc(bufferBar);
+		*/
 		WriteConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize, dwBufferCoord, &rcRegion);
+		
 	}
 }

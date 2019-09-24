@@ -2,10 +2,8 @@
 #include "Map.h"
 
 
-#define SCREEN_WIDTH 100
-#define SCREEN_HEIGHT 40
-
-void Map::calc(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
+/*
+void Map::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
 	for (int x = 0; x < SCREEN_WIDTH; ++x) {
 		for (int y = 0; y < SCREEN_HEIGHT; ++y) {
 			buffer[y][x].Attributes = 0x00b0;
@@ -21,8 +19,10 @@ void Map::calc(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
 	}
 
 }
+*/
 
-Map::Map(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH])
+Map::Map(COORD size)
 {
-	calc(buffer);
+
 }
+

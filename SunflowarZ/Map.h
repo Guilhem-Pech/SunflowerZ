@@ -6,8 +6,15 @@
 
 class Map
 {
-public:
-	void calc(CHAR_INFO buffer[40][100]);
-	Map(CHAR_INFO buffer[40][100]);
+
+private:
+	COORD size;
+	// vector<Cell> cellsZ;
 	
+public:
+	
+	Map(COORD Size);
+
+	// CellZ  getCellZ(int x, int y)
+	// CellZ getGoundCellZ(int y1)
 };
