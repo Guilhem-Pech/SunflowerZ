@@ -9,11 +9,11 @@ MainMenu::MainMenu(const COORD & size, const COORD & pos)
 	this->pos = pos;	
 }
 
-void MainMenu::calcMenu()
-{
-	SMALL_RECT rcRegion = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
-	CHAR_INFO MenuBuffer[SCREEN_HEIGHT][SCREEN_WIDTH] = { 0 };
-}
+//void MainMenu::calcMenu()
+//{
+//	SMALL_RECT rcRegion = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
+//	CHAR_INFO MenuBuffer[SCREEN_HEIGHT][SCREEN_WIDTH] = { 0 };
+//}
 
 MainMenu::~MainMenu()
 {

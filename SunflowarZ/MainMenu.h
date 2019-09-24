@@ -12,7 +12,7 @@ private:
 	COORD pos{};
 public:
 	MainMenu(const COORD& size, const COORD& pos);
-	void calcMenu();
+//	void calcMenu();
 	~MainMenu();
 };
 

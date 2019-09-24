@@ -24,6 +24,9 @@
     <ClInclude Include="Map.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="CellZ.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -36,6 +39,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CellZ.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
