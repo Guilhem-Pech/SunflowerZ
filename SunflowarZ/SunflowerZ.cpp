@@ -9,9 +9,22 @@ void SunflowerZ::placeZ(const COORD& posZ) {
 void SunflowerZ::hitZ(int damage) {
 	this->hpZ -= damage;
 }
+void SunflowerZ::dieZ() {
+
+}
 
 void SunflowerZ::switchWeaponZ(bool upZ) {
 	upZ ? this->IdWeaponUsedZ++ : this->IdWeaponUsedZ--;
+}
+void SunflowerZ::shootWeaponZ() {
+
+}
+
+void SunflowerZ::moveZ() {
+
+}
+void SunflowerZ::jumpZ() {
+
 }
 
 SunflowerZ::SunflowerZ()
