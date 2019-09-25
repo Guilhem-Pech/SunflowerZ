@@ -13,6 +13,7 @@ protected:
 	WORD attributes;
 public:
 	virtual ~CellZ() = default;
+	void setAttribute(WORD word);
 
 	CellZ();
 	CellZ(const COORD &position, const char &sprite = ' ');
@@ -20,5 +21,7 @@ public:
 	void setPos(const COORD &newCoordinates);
 	COORD getPos() const;
 	virtual string getTypeName();
+	WORD getAttributes() const;
+	char getSprite() const;
 };
 

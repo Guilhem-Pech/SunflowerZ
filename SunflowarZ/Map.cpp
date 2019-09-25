@@ -1,7 +1,8 @@
 ﻿#include "pch.h"
 #include "Map.h"
 #include <random>
-
+#include <algorithm>
+#include <iostream>
 
 /*
 void Map::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
@@ -22,45 +23,57 @@ void Map::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
 }
 */
 
-Map::Map(const COORD &size)
+std::vector<std::vector<CellZ*>> Map::getCellsZ()
 {
-	const std::vector<std::vector<CellZ> > vec(size.Y, std::vector<CellZ>(size.X));
-	cellsZ = vec;
+	return cellsZ;
 }
 
-CellZ* Map::getCellZ(const int &x, const int &y)
+Map::Map(const COORD &size) :
+	size(size), cellsZ(size.Y, std::vector<CellZ*>(size.X))
+{}
+
+CellZ* Map::getCellZ(int x, int y)
 {
-	return &cellsZ[x][y];
+	return cellsZ[x][y];
 }
 
-void Map::fillMap(const COORD & size)
+void Map::fillMap()
 {
-	// Fill the map with air
-	for (short y = 0; y < size.Y; ++y) {
-		for (short x = 0; x < size.X; ++x) {
-			cellsZ[y][x] = AirCellZ({x,y});
+	for(short i = 0; i<cellsZ.size(); ++i)
+		for (short j = 0; j < cellsZ[i].size(); ++j)
+		{
+			if (cellsZ[i][j]) // Delete previous cellz if any so there is no memory leak
+				delete cellsZ[i][j];
+			cellsZ[i][j] = new AirCellZ({ j,i });
+		}
+
+
+	for (int y = 5; y <= (SCREEN_HEIGHT - 1); ++y) {
+		int a = y / 11;
+		for (int x = 0; x <= y + a * a && x <= (SCREEN_WIDTH / 2); ++x) {
+			cellsZ[x][y]->setAttribute(0x0080);
+			cellsZ[SCREEN_WIDTH - 1 - x][y]->setAttribute(0x0080);
 		}
 	}
 }
 
-CellZ random_element(const std::vector<CellZ> &vec)
+template<typename T>
+T random_element(const std::vector<T> &vec)
 {
 	std::random_device seed;
 	std::mt19937 engine(seed());
-	std::uniform_int_distribution<int> choose(0, vec.size() - 1);
+	const std::uniform_int_distribution<int> choose(0, vec.size() - 1);
 	return vec[choose(engine)];
 }
 
 CellZ* Map::getGoundCellZ(const int& y1)
 {
-	std::vector<CellZ> *suitable = new std::vector<CellZ>();
-	for (CellZ e : cellsZ[y1])
-		if (e.getTypeName() == "ground")
+	std::vector<CellZ*> *suitable = new std::vector<CellZ*>();
+	for (CellZ *e : cellsZ[y1])
+		if (e->getTypeName() == "ground")
 			suitable->push_back(e);
 
 	if (suitable->empty())
 		return nullptr;	
-	return &random_element(*suitable);
+	return random_element(*suitable);
 }
-
-

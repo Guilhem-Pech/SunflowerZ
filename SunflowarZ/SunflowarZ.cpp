@@ -18,6 +18,19 @@ void calcSunflowerZ(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
 }
 
 
+void draw(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], Map* m)
+{
+	for (int i = 0; i < m->getCellsZ().size(); ++i)
+	{
+		for (int j = 0; j < m->getCellsZ()[i].size(); ++j)
+		{
+			bufferConsole[j][i].Attributes = m->getCellZ(i, j)->getAttributes();
+			bufferConsole[j][i].Char.AsciiChar = m->getCellZ(i, j)->getSprite();
+		}
+	}
+	WriteConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize, dwBufferCoord, &rcRegion);
+}
+
 int main()
 {
 	hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
@@ -28,17 +41,20 @@ int main()
 	CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH] = { 0 };
 
 	ReadConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize,dwBufferCoord, &rcRegion);
-	
-	
-	CellZ *c = new CellZ({ 0,0 });
-	AirCellZ *a = new AirCellZ({0,0});
 
+	/**
+	 * Create and fill the Map
+	 */
+	Map *m = new Map({ SCREEN_HEIGHT,SCREEN_WIDTH });
+	m->fillMap();
 	
-	std::cout << c->getTypeName() << std::endl << a->getTypeName();
-
+	
 	while (1) {
+
+		draw(rcRegion, bufferConsole, m);
+		//std::cout << m->getCellsZ()[1][1].getTypeName();
 		
-		//Map *m = new Map({40,100});
+		//
 		/*
 		for (sunflower m : list)
 			m->calc(bufferConsole);
@@ -49,7 +65,9 @@ int main()
 		
 		barreAction->calc(bufferBar);
 		*/
-		//WriteConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize, dwBufferCoord, &rcRegion);
 		
-	}
+		
+	}		
 }
+
+

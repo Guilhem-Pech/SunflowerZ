@@ -3,6 +3,11 @@
 #include <iostream>
 
 
+void CellZ::setAttribute(WORD word)
+{
+	this->attributes = word;
+}
+
 CellZ::CellZ()
 {
 	this->pos = {0,0};
@@ -37,4 +42,14 @@ COORD CellZ::getPos() const
 string CellZ::getTypeName()
 {
 	return "Undefined";
+}
+
+WORD CellZ::getAttributes() const
+{
+	return attributes;
+}
+
+char CellZ::getSprite() const
+{
+	return this->sprite;
 }

@@ -14,14 +14,15 @@ class Map
 
 private:
 	COORD size;
-	std::vector<std::vector<CellZ>> cellsZ;
+	std::vector<std::vector<CellZ*>> cellsZ;
 	
 public:
-	
+
+	std::vector<std::vector<CellZ*>> getCellsZ();
 	Map(const COORD &size);
 
-	CellZ*  getCellZ(const int &x, const int &y);
-	void fillMap(const COORD& size);
+	CellZ*  getCellZ(int x, int y);
+	void fillMap();
 
 	CellZ* getGoundCellZ(const int &y1 );
 };
