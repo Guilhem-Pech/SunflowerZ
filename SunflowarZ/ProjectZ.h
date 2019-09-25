@@ -17,7 +17,6 @@ public:
 	void updateZ();
 
 	ProjectZ();
-	ProjectZ();
 	~ProjectZ();
 };
 
