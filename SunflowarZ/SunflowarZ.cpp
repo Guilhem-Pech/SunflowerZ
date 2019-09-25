@@ -1,10 +1,14 @@
 #include "pch.h"
+#include "SunflowerZ.h"
+#include "GameZ.h"
+#include "WeaponZ.h"
 
 #include <Windows.h>
 #include <iostream>
 #include "MapZ.h"
 #include "CellZ.h"
 #include "AirCellZ.h"
+
 #define SCREEN_WIDTH 100
 #define SCREEN_HEIGHT 40
 COORD dwBufferSize = { SCREEN_WIDTH,SCREEN_HEIGHT };

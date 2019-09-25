@@ -158,7 +158,13 @@
     <ClInclude Include="MapZ.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RockCellZ.h" />
+    <ClInclude Include="CollisionControllerZ.h" />
+    <ClInclude Include="GameZ.h" />
+    <ClInclude Include="ObjectZ.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="ProjectZ.h" />
     <ClInclude Include="SunflowerZ.h" />
+    <ClInclude Include="WeaponZ.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AirCellZ.cpp" />
@@ -166,6 +172,9 @@
     <ClCompile Include="GroundCellZ.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MapZ.cpp" />
+    <ClCompile Include="CollisionControllerZ.cpp" />
+    <ClCompile Include="GameZ.cpp" />
+    <ClCompile Include="ObjectZ.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -173,8 +182,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="RockCellZ.cpp" />
+    <ClCompile Include="ProjectZ.cpp" />
     <ClCompile Include="SunflowarZ.cpp" />
     <ClCompile Include="SunflowerZ.cpp" />
+    <ClCompile Include="WeaponZ.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
