@@ -1,11 +1,11 @@
 ﻿#include "pch.h"
-#include "Map.h"
+#include "MapZ.h"
 #include <random>
 #include <algorithm>
 #include <iostream>
 
 /*
-void Map::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
+void MapZ::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
 	for (int x = 0; x < SCREEN_WIDTH; ++x) {
 		for (int y = 0; y < SCREEN_HEIGHT; ++y) {
 			buffer[y][x].Attributes = 0x00b0;
@@ -23,21 +23,21 @@ void Map::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
 }
 */
 
-std::vector<std::vector<CellZ*>> Map::getCellsZ()
+std::vector<std::vector<CellZ*>> MapZ::getCellsZ()
 {
 	return cellsZ;
 }
 
-Map::Map(const COORD &size) :
+MapZ::MapZ(const COORD &size) :
 	size(size), cellsZ(size.Y, std::vector<CellZ*>(size.X))
 {}
 
-CellZ* Map::getCellZ(int x, int y)
+CellZ* MapZ::getCellZ(int x, int y)
 {
 	return cellsZ[x][y];
 }
 
-void Map::fillMap()
+void MapZ::fillMap()
 {
 	for(short i = 0; i<cellsZ.size(); ++i)
 		for (short j = 0; j < cellsZ[i].size(); ++j)
@@ -66,7 +66,7 @@ T random_element(const std::vector<T> &vec)
 	return vec[choose(engine)];
 }
 
-CellZ* Map::getGoundCellZ(const int& y1)
+CellZ* MapZ::getGoundCellZ(const int& y1)
 {
 	std::vector<CellZ*> *suitable = new std::vector<CellZ*>();
 	for (CellZ *e : cellsZ[y1])
@@ -76,4 +76,12 @@ CellZ* Map::getGoundCellZ(const int& y1)
 	if (suitable->empty())
 		return nullptr;	
 	return random_element(*suitable);
+}
+
+MapZ::~MapZ()
+{
+	for (short i = 0; i < cellsZ.size(); ++i)
+		for (short j = 0; j < cellsZ[i].size(); ++j)
+			if (cellsZ[i][j]) // Delete previous cellz if any so there is no memory leak
+				delete cellsZ[i][j];
 }

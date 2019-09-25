@@ -2,7 +2,7 @@
 
 #include <Windows.h>
 #include <iostream>
-#include "Map.h"
+#include "MapZ.h"
 #include "CellZ.h"
 #include "AirCellZ.h"
 #define SCREEN_WIDTH 100
@@ -18,7 +18,7 @@ void calcSunflowerZ(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
 }
 
 
-void draw(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], Map* m)
+void draw(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], MapZ* m)
 {
 	for (int i = 0; i < m->getCellsZ().size(); ++i)
 	{
@@ -43,28 +43,15 @@ int main()
 	ReadConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize,dwBufferCoord, &rcRegion);
 
 	/**
-	 * Create and fill the Map
+	 * Create and fill the MapZ
 	 */
-	Map *m = new Map({ SCREEN_HEIGHT,SCREEN_WIDTH });
+	MapZ *m = new MapZ({ SCREEN_HEIGHT,SCREEN_WIDTH });
 	m->fillMap();
 	
 	
 	while (1) {
 
 		draw(rcRegion, bufferConsole, m);
-		//std::cout << m->getCellsZ()[1][1].getTypeName();
-		
-		//
-		/*
-		for (sunflower m : list)
-			m->calc(bufferConsole);
-		
-
-		for (projectile p : listP)
-			p->calc(bufferConsole);
-		
-		barreAction->calc(bufferBar);
-		*/
 		
 		
 	}		

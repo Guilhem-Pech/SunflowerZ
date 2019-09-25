@@ -9,7 +9,7 @@
 #define SCREEN_WIDTH 100
 #define SCREEN_HEIGHT 40
 
-class Map
+class MapZ
 {
 
 private:
@@ -19,10 +19,11 @@ private:
 public:
 
 	std::vector<std::vector<CellZ*>> getCellsZ();
-	Map(const COORD &size);
+	MapZ(const COORD &size);
 
 	CellZ*  getCellZ(int x, int y);
 	void fillMap();
 
 	CellZ* getGoundCellZ(const int &y1 );
+	~MapZ();
 };
