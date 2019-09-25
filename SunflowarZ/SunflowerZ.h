@@ -6,9 +6,6 @@
 #include <Windows.h>
 
 
-//TO REMOVE
-typedef int Weapon;
-
 class SunflowerZ
 {
 

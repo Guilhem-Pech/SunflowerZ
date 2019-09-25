@@ -6,8 +6,8 @@
 #include "WeaponZ.h"
 #include "ProjectZ.h"
 #include "CollisionControllerZ.h"
+#include "MapZ.h"
 
-typedef MapZ;
 
 class GameZ
 {
@@ -19,7 +19,7 @@ public:
 	std::vector<SunflowerZ*> listSFZ;
 	CollisionControllerZ * collisionZ;
 
-	GameZ();
+	GameZ(int numberSFZ);
 	~GameZ();
 };
 

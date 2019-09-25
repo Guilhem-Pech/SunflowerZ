@@ -2,6 +2,7 @@
 #include "ProjectZ.h"
 
 
+
 COORD ProjectZ::travel() {
 	COORD temp = this->posProjectilZ;
 	short y = 1;
@@ -51,9 +52,11 @@ COORD ProjectZ::travel() {
 
 void ProjectZ::updateZ() {
 	COORD temp = this->travel();
+/*
 	if (!gameZ.IsCollisionZ(temp)) { //gameZ is the game manager and collisionZ the collision manager
 		this->posProjectilZ = temp;
 	}
+*/
 }
 
 ProjectZ::ProjectZ()

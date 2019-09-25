@@ -2,9 +2,9 @@
 #include "GameZ.h"
 
 
-GameZ::GameZ()
+GameZ::GameZ(int numberSFZ): maxSFZ(0)
 {
-	this->mapZ = new MapZ();
+	this->mapZ = new MapZ({ 100,40 }); //TODO modulable
 	this->collisionZ = new CollisionControllerZ(mapZ);
 }
 

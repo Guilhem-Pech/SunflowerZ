@@ -4,15 +4,15 @@
 #include <Windows.h>
 
 
-bool isCollisionZ(COORD posZ) {
+bool CollisionControllerZ::isCollisionZ(COORD posZ) {
 
 }
 
-void spreadAoEZ(COORD posInitZ, int radiuZ, std::vector<COORD> posHitByAoEZ) {
+void CollisionControllerZ::spreadAoEZ(COORD posInitZ, int radiuZ, std::vector<COORD> posHitByAoEZ) {
 
 }
 
-CollisionControllerZ::CollisionControllerZ(MapZ mapZ){
+CollisionControllerZ::CollisionControllerZ(MapZ *mapZ){
 }
 
 

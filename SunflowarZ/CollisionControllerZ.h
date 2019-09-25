@@ -2,8 +2,6 @@
 #include "MapZ.h"
 #include <vector>
 
-typedef MapZ;
-
 class CollisionControllerZ
 {
 public:
@@ -13,7 +11,7 @@ public:
 	bool isCollisionZ(COORD posZ);
 	void spreadAoEZ(COORD posInitZ, int radiuZ, std::vector<COORD> posHitByAoEZ);
 
-	CollisionControllerZ(MapZ mapZ);
+	CollisionControllerZ(MapZ *mapZ);
 	~CollisionControllerZ();
 };
 
