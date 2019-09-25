@@ -34,6 +34,7 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="MapZ.h">
+    <ClInclude Include="SunflowerZ.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -60,6 +61,7 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="MapZ.cpp">
+    <ClCompile Include="SunflowerZ.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
