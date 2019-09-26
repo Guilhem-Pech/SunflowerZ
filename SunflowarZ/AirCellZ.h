@@ -5,6 +5,6 @@ class AirCellZ : public CellZ
 private:
 public:
 	AirCellZ(const COORD &position);
-	virtual string getTypeName();
+	string getTypeName() override;
 };
 
