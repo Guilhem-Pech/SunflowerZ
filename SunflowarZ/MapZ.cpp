@@ -70,7 +70,7 @@ T random_element(const std::vector<T> &vec)
 
 CellZ* MapZ::getGoundCellZ(const int& y1)
 {
-	std::vector<CellZ*> *suitable = new std::vector<CellZ*>();
+	std::unique_ptr<std::vector<CellZ*>> suitable (new std::vector<CellZ*>());
 	for (CellZ *e : cellsZ[y1])
 		if (e->getTypeName() == "ground")
 			suitable->push_back(e);
@@ -82,8 +82,7 @@ CellZ* MapZ::getGoundCellZ(const int& y1)
 
 MapZ::~MapZ()
 {
-	for (short i = 0; i < cellsZ.size(); ++i)
-		for (short j = 0; j < cellsZ[i].size(); ++j)
-			if (cellsZ[i][j])
-				delete cellsZ[i][j];
+	for (auto& i : cellsZ)
+		for (auto& j : i)
+			delete j;
 }
