@@ -1,8 +1,7 @@
 ﻿#include "pch.h"
 #include "MapZ.h"
 #include <random>
-#include <algorithm>
-#include <iostream>
+#include "AirCellZ.h"
 
 /*
 void MapZ::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {

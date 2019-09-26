@@ -20,7 +20,7 @@ public:
 		freq /= 1000;
 	}
 
-	void start(void)
+	void start()
 	{
 		QueryPerformanceCounter(&lastUpdateTime);
 	}

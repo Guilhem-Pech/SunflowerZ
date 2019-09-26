@@ -7,7 +7,6 @@
 #include <iostream>
 #include "MapZ.h"
 #include "CellZ.h"
-#include "AirCellZ.h"
 
 #define SCREEN_WIDTH 100
 #define SCREEN_HEIGHT 40
