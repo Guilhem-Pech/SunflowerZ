@@ -52,7 +52,8 @@ void MapZ::fillMap()
 
 	for (int y = 5; y <= (SCREEN_HEIGHT - 1); ++y) {
 		int a = y / 11;
-		for (int x = 0; x <= y + a * a && x <= (SCREEN_WIDTH / 2); ++x) {
+		for (int x = 0; x <= y + a * a && x <= (SCREEN_WIDTH / 2); ++x)
+		{
 			cellsZ[x][y]->setAttribute(0x0080);
 			cellsZ[SCREEN_WIDTH - 1 - x][y]->setAttribute(0x0080);
 		}

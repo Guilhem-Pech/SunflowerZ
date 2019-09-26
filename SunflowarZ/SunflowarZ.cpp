@@ -56,8 +56,7 @@ int main()
 	while (1) {
 
 		draw(rcRegion, bufferConsole, m);
-		
-		
+	
 	}		
 }
 
