@@ -5,7 +5,7 @@
 
 
 bool CollisionControllerZ::isCollisionZ(COORD posZ) {
-
+	return 0;
 }
 
 void CollisionControllerZ::spreadAoEZ(COORD posInitZ, int radiuZ, std::vector<COORD> posHitByAoEZ) {
@@ -16,6 +16,5 @@ CollisionControllerZ::CollisionControllerZ(MapZ *mapZ){
 }
 
 
-CollisionControllerZ::~CollisionControllerZ()
-{
+CollisionControllerZ::~CollisionControllerZ(){
 }

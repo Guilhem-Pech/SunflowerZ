@@ -3,6 +3,7 @@
 #include "ProjectZ.h"
 #include <string>
 
+class ProjectZ;
 class WeaponZ : public ObjectZ
 {
 public:
@@ -13,7 +14,7 @@ public:
 	void aimUpZ(bool upZ); // change the aiming direction
 	void useZ(); //shoot the weapons, will create a projectil with a base speed and a direction
 
-	virtual ProjectZ *getMunitionZ(); //retrieve the munition of the weapon
+	virtual ProjectZ *getMunitionZ() = 0; //retrieve the munition of the weapon
 
 	void updateZ();
 

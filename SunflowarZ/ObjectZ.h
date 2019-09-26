@@ -3,9 +3,9 @@ class ObjectZ
 {
 public:
 
-	virtual void useZ() = 0;
+	virtual void useZ();
 
-	virtual void updateZ() = 0;
+	virtual void updateZ();
 
 	ObjectZ();
 	~ObjectZ();

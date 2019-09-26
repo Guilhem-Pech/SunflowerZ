@@ -2,7 +2,10 @@
 #include "WeaponZ.h"
 
 #include <Windows.h>
-#include <string>>
+#include <string>
+
+int WeaponZ::powerZ = 0;
+int WeaponZ::aimZ = 0;
 
 void WeaponZ::aimUpZ(bool upZ) {
 	upZ ? ++this->aimZ : --this->aimZ;
@@ -11,12 +14,9 @@ void WeaponZ::aimUpZ(bool upZ) {
 void WeaponZ::useZ() {
 	ProjectZ * bulletShotZ = this->getMunitionZ();
 	bulletShotZ->speedZ = this->powerZ;
-	bulletShotZ->posProjectilZ = this->posUserZ;
+	bulletShotZ->posProjectilZ = *this->posUserZ;
 	bulletShotZ->dirZ = this->aimZ;
 	bulletShotZ->travel();
-}
-
-ProjectZ *WeaponZ::getMunitionZ() {
 }
 
 void WeaponZ::updateZ() {

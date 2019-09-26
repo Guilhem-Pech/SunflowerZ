@@ -30,7 +30,7 @@ public:
 	void updateZ();
 
 	SunflowerZ(COORD posZ);
-	SunflowerZ(COORD posZ, std::vector<ObjectZ> inventoryListZ);
+	SunflowerZ(std::vector<ObjectZ> inventoryListZ, COORD posZ);
 	~SunflowerZ();
 
 private:

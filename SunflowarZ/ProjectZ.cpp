@@ -53,7 +53,7 @@ COORD ProjectZ::travel() {
 void ProjectZ::updateZ() {
 	COORD temp = this->travel();
 /*
-	if (!gameZ.IsCollisionZ(temp)) { //gameZ is the game manager and collisionZ the collision manager
+	if (!gameZ.IsCollisionZ(temp)) { //gameZ is the game manager and collisionZ the collision manager finda solution pls
 		this->posProjectilZ = temp;
 	}
 */

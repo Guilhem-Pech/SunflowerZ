@@ -45,20 +45,17 @@ void SunflowerZ::updateZ() {
 
 }
 
-SunflowerZ::SunflowerZ(COORD pos = { 0,0 })
-{
+SunflowerZ::SunflowerZ(COORD pos = { 0,0 }){
 	this->posSunflowerZ = pos;
 	this->initZ();
 }
 
-SunflowerZ::SunflowerZ(COORD pos = { 0,0 }, std::vector<ObjectZ> inventoryListZ)
-{
+SunflowerZ::SunflowerZ(std::vector<ObjectZ> inventoryListZ, COORD pos = { 0,0 }) {
 	this->posSunflowerZ = pos;
 	this->initZ();
 	this->inventoryZ = inventoryListZ;
 }
 
-SunflowerZ::~SunflowerZ()
-{
+SunflowerZ::~SunflowerZ(){
 	this->inventoryZ.clear();
 }
