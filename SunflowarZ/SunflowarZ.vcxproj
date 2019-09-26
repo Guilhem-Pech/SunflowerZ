@@ -154,6 +154,8 @@
     <ClInclude Include="AirCellZ.h" />
     <ClInclude Include="CellZ.h" />
     <ClInclude Include="CollisionControllerZ.h" />
+    <ClInclude Include="EntityManagerZ.h" />
+    <ClInclude Include="EntityZ.h" />
     <ClInclude Include="GameZ.h" />
     <ClInclude Include="GroundCellZ.h" />
     <ClInclude Include="MainMenu.h" />
@@ -169,6 +171,8 @@
     <ClCompile Include="AirCellZ.cpp" />
     <ClCompile Include="CellZ.cpp" />
     <ClCompile Include="CollisionControllerZ.cpp" />
+    <ClCompile Include="EntityManagerZ.cpp" />
+    <ClCompile Include="EntityZ.cpp" />
     <ClCompile Include="GameZ.cpp" />
     <ClCompile Include="GroundCellZ.cpp" />
     <ClCompile Include="MainMenu.cpp" />

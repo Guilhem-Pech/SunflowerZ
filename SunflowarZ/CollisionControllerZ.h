@@ -1,5 +1,7 @@
 #pragma once
 #include "MapZ.h"
+#include "EntityManagerZ.h"
+
 #include <vector>
 
 class CollisionControllerZ

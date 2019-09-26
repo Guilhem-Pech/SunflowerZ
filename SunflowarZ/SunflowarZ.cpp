@@ -2,6 +2,7 @@
 #include "SunflowerZ.h"
 #include "GameZ.h"
 #include "WeaponZ.h"
+#include "EntityManagerZ.h"
 
 #include <Windows.h>
 #include <iostream>

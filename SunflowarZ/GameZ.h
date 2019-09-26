@@ -7,6 +7,7 @@
 #include "WeaponZ.h"
 #include "ProjectZ.h"
 #include "CollisionControllerZ.h"
+#include "EntityManagerZ.h"
 #include "MapZ.h"
 
 
@@ -15,9 +16,7 @@ class GameZ
 public:
 
 	int const maxSFZ;
-
 	MapZ * mapZ;
-	std::vector<SunflowerZ*> listSFZ;
 	CollisionControllerZ * collisionZ;
 
 	GameZ(int numberSFZ);

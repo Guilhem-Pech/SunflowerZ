@@ -14,13 +14,8 @@ void WeaponZ::aimUpZ(bool upZ) {
 void WeaponZ::useZ() {
 	ProjectZ * bulletShotZ = this->getMunitionZ();
 	bulletShotZ->speedZ = this->powerZ;
-	bulletShotZ->posProjectilZ = *this->posUserZ;
+	bulletShotZ->setPos2DZ(*this->posUserZ);
 	bulletShotZ->dirZ = this->aimZ;
-	bulletShotZ->travel();
-}
-
-void WeaponZ::updateZ() {
-
 }
 
 WeaponZ::WeaponZ()

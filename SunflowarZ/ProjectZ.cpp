@@ -3,8 +3,8 @@
 
 
 
-COORD ProjectZ::travel() {
-	COORD temp = this->posProjectilZ;
+COORD ProjectZ::getNextMove2DZ() {
+	COORD temp = this->pos2DZ;
 	short y = 1;
 	if (this->speedZ = 1) {
 		y = -1;
@@ -50,22 +50,19 @@ COORD ProjectZ::travel() {
 	return temp;
 }
 
-void ProjectZ::updateZ() {
-	COORD temp = this->travel();
-/*
-	if (!gameZ.IsCollisionZ(temp)) { //gameZ is the game manager and collisionZ the collision manager finda solution pls
-		this->posProjectilZ = temp;
-	}
-*/
-}
 
-ProjectZ::ProjectZ()
+
+ProjectZ::ProjectZ():EntityZ()
 {
 }
 
 ProjectZ::~ProjectZ()
 {
 }
+
+
+//----AMMUNITION TYPES-------
+//---------------------------
 
 BeamZ::BeamZ() {
 	this->damageZ = 70;

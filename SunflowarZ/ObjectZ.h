@@ -3,7 +3,7 @@ class ObjectZ
 {
 public:
 
-	virtual void useZ();
+	virtual void useZ(); //use the object 
 
 	virtual void updateZ();
 

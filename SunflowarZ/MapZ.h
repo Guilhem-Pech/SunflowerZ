@@ -24,6 +24,8 @@ public:
 	CellZ*  getCellZ(int x, int y);
 	void fillMap();
 
+	COORD getSizeZ() const;
+
 	CellZ* getGoundCellZ(const int &y1 );
 	~MapZ();
 };

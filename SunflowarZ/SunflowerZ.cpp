@@ -4,13 +4,10 @@
 
 const int move = 5;
 
-void SunflowerZ::placeZ(const COORD& posZ) {
-	this->posSunflowerZ = posZ;
-}
-
 void SunflowerZ::hurtZ(int damage) {
 	this->hpZ -= damage;
 }
+
 void SunflowerZ::dieZ() {
 	//TODO
 }
@@ -18,15 +15,19 @@ void SunflowerZ::dieZ() {
 void SunflowerZ::switchObjectZ(bool upZ) {
 	upZ ? this->idObjectUsedZ++ : this->idObjectUsedZ--;
 }
+
 void SunflowerZ::useObjectZ() {
 	this->inventoryZ[this->idObjectUsedZ].useZ();
 }
 
-void SunflowerZ::moveZ() {
+COORD SunflowerZ::getNextMove2DZ() {
+	COORD temp = this->pos2DZ;
 	if (this->movementZ > 0) {
 		//TODO
 	}
+	return (temp);
 }
+
 void SunflowerZ::jumpZ() {
 	//TODO
 }
@@ -36,22 +37,19 @@ void SunflowerZ::startTurn() {
 }
 
 void SunflowerZ::initZ() {
+	this->sprite2DZ = '*';
 	this->hpZ = 100;
 	this->movementZ = move;
 	this->idObjectUsedZ = 0;
 }
 
-void SunflowerZ::updateZ() {
-
-}
-
-SunflowerZ::SunflowerZ(COORD pos = { 0,0 }){
-	this->posSunflowerZ = pos;
+SunflowerZ::SunflowerZ(COORD pos = { 0,0 }) :EntityZ() {
+	this->pos2DZ = pos;
 	this->initZ();
 }
 
-SunflowerZ::SunflowerZ(std::vector<ObjectZ> inventoryListZ, COORD pos = { 0,0 }) {
-	this->posSunflowerZ = pos;
+SunflowerZ::SunflowerZ(std::vector<ObjectZ> inventoryListZ, COORD pos = { 0,0 }) : EntityZ() {
+	this->pos2DZ = pos;
 	this->initZ();
 	this->inventoryZ = inventoryListZ;
 }

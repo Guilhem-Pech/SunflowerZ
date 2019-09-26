@@ -16,8 +16,6 @@ public:
 
 	virtual ProjectZ *getMunitionZ() = 0; //retrieve the munition of the weapon
 
-	void updateZ();
-
 	WeaponZ();
 	~WeaponZ();
 };

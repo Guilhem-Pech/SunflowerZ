@@ -16,6 +16,8 @@
     <ClCompile Include="MapZ.cpp" />
     <ClCompile Include="NYTimer.cpp" />
     <ClCompile Include="RockCellZ.cpp" />
+    <ClCompile Include="EntityZ.cpp" />
+    <ClCompile Include="EntityManagerZ.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CollisionControllerZ.h" />
@@ -31,5 +33,7 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MapZ.h" />
     <ClInclude Include="RockCellZ.h" />
+    <ClInclude Include="EntityZ.h" />
+    <ClInclude Include="EntityManagerZ.h" />
   </ItemGroup>
 </Project>

@@ -57,6 +57,11 @@ void MapZ::fillMap()
 	}
 }
 
+
+COORD MapZ::getSizeZ() const {
+	return this->size;
+}
+
 template<typename T>
 T random_element(const std::vector<T> &vec)
 {
