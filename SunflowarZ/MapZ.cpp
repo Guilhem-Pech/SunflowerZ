@@ -34,6 +34,8 @@ MapZ::MapZ(const COORD &size) :
 
 CellZ* MapZ::getCellZ(int x, int y)
 {
+	std::shared_ptr<CellZ> c (new CellZ({0,0}));
+	
 	return cellsZ[x][y];
 }
 
@@ -42,7 +44,7 @@ void MapZ::fillMap()
 	for(short i = 0; i<cellsZ.size(); ++i)
 		for (short j = 0; j < cellsZ[i].size(); ++j)
 		{
-			if (cellsZ[i][j]) // Delete previous cellz if any so there is no memory leak
+			if (cellsZ[i][j]) 
 				delete cellsZ[i][j];
 			cellsZ[i][j] = new AirCellZ({ j,i });
 		}
@@ -82,6 +84,6 @@ MapZ::~MapZ()
 {
 	for (short i = 0; i < cellsZ.size(); ++i)
 		for (short j = 0; j < cellsZ[i].size(); ++j)
-			if (cellsZ[i][j]) // Delete previous cellz if any so there is no memory leak
+			if (cellsZ[i][j])
 				delete cellsZ[i][j];
 }
