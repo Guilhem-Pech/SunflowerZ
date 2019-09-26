@@ -24,10 +24,7 @@ void WeaponZ::updateZ() {
 }
 
 WeaponZ::WeaponZ()
-{
-	this->aimZ = 0;
-	this->powerZ = 0;
-}
+{}
 
 WeaponZ::~WeaponZ()
 {

@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CellZ.h"
-#include <iostream>
 
 void CellZ::setAttribute(WORD word)
 {

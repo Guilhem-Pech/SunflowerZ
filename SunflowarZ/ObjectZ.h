@@ -8,9 +8,6 @@ public:
 	virtual void updateZ();
 
 	ObjectZ();
-	~ObjectZ();
-
-private:
-
+	virtual ~ObjectZ();
 };
 

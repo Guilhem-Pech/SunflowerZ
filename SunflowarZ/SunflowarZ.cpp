@@ -35,8 +35,13 @@ void draw(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WID
 	WriteConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize, dwBufferCoord, &rcRegion);
 }
 
+
+
+
 int main()
 {
+	
+	
 	hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
 
 	SMALL_RECT rcRegion = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
@@ -51,7 +56,6 @@ int main()
 	 */
 	MapZ *m = new MapZ({ SCREEN_HEIGHT,SCREEN_WIDTH });
 	m->fillMap();
-	
 	
 	while (1) {
 
