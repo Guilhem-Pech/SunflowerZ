@@ -11,11 +11,8 @@ void ObjectZ::updateZ()
 }
 
 ObjectZ::ObjectZ()
-{
-
-}
+= default;
 
 
 ObjectZ::~ObjectZ()
-{
-}
+= default;

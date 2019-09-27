@@ -9,6 +9,7 @@
 #include "MapZ.h"
 #include "CellZ.h"
 
+#define _WIN32_WINNT 0x0500
 #define SCREEN_WIDTH 100
 #define SCREEN_HEIGHT 40
 COORD dwBufferSize = { SCREEN_WIDTH,SCREEN_HEIGHT };
@@ -40,14 +41,17 @@ void draw(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WID
 
 int main()
 {
-	
-	
+
+	HWND consoleWindow = GetConsoleWindow();
+	SetWindowLong(consoleWindow, GWL_STYLE, GetWindowLong(consoleWindow, GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
+	MoveWindow(consoleWindow, 40, 100, 840, 840, TRUE);
+	   	
 	hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
 
 	SMALL_RECT rcRegion = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
 
 
-	CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH] = { 0 };
+	CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH] = {};
 
 	ReadConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize,dwBufferCoord, &rcRegion);
 
@@ -57,7 +61,7 @@ int main()
 	MapZ *m = new MapZ({ SCREEN_HEIGHT,SCREEN_WIDTH });
 	m->fillMap();
 	
-	while (1) {
+	for (;;) {
 
 		draw(rcRegion, bufferConsole, m);
 	

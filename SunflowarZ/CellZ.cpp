@@ -6,10 +6,10 @@ void CellZ::setAttribute(WORD word)
 	this->attributes = word;
 }
 
-CellZ::CellZ() : pos({0,0}), sprite(' '), attributes(0x00E0)
+CellZ::CellZ() : sprite(' '), pos({0,0}), attributes(0x00E0)
 {}
 
-CellZ::CellZ(const COORD &position, const char &sprite) : pos(position),sprite(sprite), attributes(0x00E0)
+CellZ::CellZ(const COORD &position, const char &sprite) : sprite(sprite),pos(position), attributes(0x00E0)
 {}
 
 

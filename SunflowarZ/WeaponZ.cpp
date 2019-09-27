@@ -8,7 +8,7 @@ int WeaponZ::powerZ = 0;
 int WeaponZ::aimZ = 0;
 
 void WeaponZ::aimUpZ(bool upZ) {
-	upZ ? ++this->aimZ : --this->aimZ;
+	upZ ? ++this->aimZ : --this->aimZ; //TODO do something about it, you're not supposed to do that !
 }
 
 void WeaponZ::useZ() {
@@ -19,11 +19,10 @@ void WeaponZ::useZ() {
 }
 
 WeaponZ::WeaponZ()
-{}
+= default;
 
 WeaponZ::~WeaponZ()
-{
-}
+= default;
 
 //------SUNPERZ--------
 //---------------------
@@ -39,5 +38,4 @@ SunperZ::SunperZ()
 }
 
 SunperZ::~SunperZ()
-{
-}
+= default;

@@ -11,11 +11,10 @@ GameZ::GameZ(int numberSFZ): maxSFZ(0)
 		COORD temp = mapZ->getGoundCellZ(rand() % mapZ->getSizeZ().X)->getPos();
 		++temp.X;
 		++temp.Y;
-		SunflowerZ * sunflowerZ = new SunflowerZ(temp);
+		auto* sunflowerZ = new SunflowerZ(temp);
 	}
 }
 
 
 GameZ::~GameZ()
-{
-}
+= default;

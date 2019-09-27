@@ -17,6 +17,11 @@ void EntityZ::setPos2DZ(COORD posZ) {
 	this->pos2DZ = posZ;
 }
 
+void EntityZ::setSprite2DZ(char c)
+{
+	this->sprite2DZ = c;
+}
+
 void EntityZ::updateZ() {
 	//TODO
 }
@@ -26,6 +31,12 @@ EntityZ::EntityZ()
 	EntityManagerZ::registerZ(this);
 }
 
-EntityZ::~EntityZ()
+EntityZ::EntityZ(char sprite2DZ, const COORD& pos2dz): EntityZ()
 {
+	this->sprite2DZ = sprite2DZ;
+	this->pos2DZ = pos2dz;
 }
+
+
+EntityZ::~EntityZ()
+= default;

@@ -11,10 +11,10 @@ public:
 	int damageZ;
 	int radiusZ;
 
-	COORD getNextMove2DZ();
+	COORD getNextMove2DZ() override;
 
 	ProjectZ();
-	~ProjectZ();
+	virtual ~ProjectZ();
 };
 
 
@@ -24,6 +24,6 @@ class BeamZ : public ProjectZ
 {
 public:
 	BeamZ();
-	~BeamZ();
+	virtual ~BeamZ();
 };
 

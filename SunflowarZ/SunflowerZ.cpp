@@ -48,7 +48,7 @@ SunflowerZ::SunflowerZ(COORD pos = { 0,0 }) :EntityZ() {
 	this->initZ();
 }
 
-SunflowerZ::SunflowerZ(std::vector<ObjectZ> inventoryListZ, COORD pos = { 0,0 }) : EntityZ() {
+SunflowerZ::SunflowerZ(const std::vector<ObjectZ> & inventoryListZ, COORD pos = { 0,0 }) : EntityZ() {
 	this->pos2DZ = pos;
 	this->initZ();
 	this->inventoryZ = inventoryListZ;

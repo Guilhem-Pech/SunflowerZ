@@ -18,7 +18,7 @@ public:
 	void switchObjectZ(bool upZ); //if true, switch weapon increasively, else, decreasively
 	void useObjectZ(); //use the Shoot action of the weapon used
 
-	COORD getNextMove2DZ(); //the SFZ go right or left or call jumpZ()
+	COORD getNextMove2DZ() override; //the SFZ go right or left or call jumpZ()
 	void jumpZ(); //he jump
 
 	void startTurn();
@@ -26,14 +26,14 @@ public:
 	void initZ(); //initialize the SFZ with HP, movement and everything else.
 
 	SunflowerZ(COORD posZ);
-	SunflowerZ(std::vector<ObjectZ> inventoryListZ, COORD posZ);
-	~SunflowerZ();
+	SunflowerZ(const std::vector<ObjectZ> &inventoryListZ, COORD posZ);
+	virtual ~SunflowerZ();
 
 private:
 
-	int hpZ; //number of Hit Points
-	int movementZ; //number of movement the SFZ can do
-	int idObjectUsedZ; //represent the weapon currently used
+	int hpZ{}; //number of Hit Points
+	int movementZ{}; //number of movement the SFZ can do
+	int idObjectUsedZ{}; //represent the weapon currently used
 	std::vector<ObjectZ> inventoryZ; //all the weapons
 
 };

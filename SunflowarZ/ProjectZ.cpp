@@ -6,7 +6,7 @@
 COORD ProjectZ::getNextMove2DZ() {
 	COORD temp = this->pos2DZ;
 	short y = 1;
-	if (this->speedZ = 1) {
+	if (this->speedZ >= 1) {
 		y = -1;
 	}
 	switch (this->dirZ)
@@ -57,8 +57,7 @@ ProjectZ::ProjectZ():EntityZ()
 }
 
 ProjectZ::~ProjectZ()
-{
-}
+= default;
 
 
 //----AMMUNITION TYPES-------
@@ -69,5 +68,4 @@ BeamZ::BeamZ() {
 	this->radiusZ = 0;
 }
 
-BeamZ::~BeamZ() {
-}
+BeamZ::~BeamZ() = default;

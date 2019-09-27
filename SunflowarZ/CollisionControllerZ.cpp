@@ -9,13 +9,13 @@ bool CollisionControllerZ::isCollisionZ(COORD posZ) {
 	return EntityManagerZ::isSomeoneHereZ(posZ);
 }
 
-void CollisionControllerZ::spreadAoEZ(COORD posInitZ, int radiuZ, std::vector<COORD> posHitByAoEZ) {
+void CollisionControllerZ::spreadAoEZ(COORD posInitZ, int radiuZ, const std::vector<COORD>& posHitByAoEZ) {
 
 }
 
-CollisionControllerZ::CollisionControllerZ(MapZ *mapZ){
+CollisionControllerZ::CollisionControllerZ(MapZ *mapZ): map(mapZ)
+{
 }
 
 
-CollisionControllerZ::~CollisionControllerZ(){
-}
+CollisionControllerZ::~CollisionControllerZ() = default;

@@ -4,10 +4,8 @@
 #define SCREEN_HEIGHT 40
 
 
-MainMenu::MainMenu(const COORD & size, const COORD & pos)
-{
-	this->pos = pos;	
-}
+MainMenu::MainMenu(const COORD & size, const COORD & pos): size(size), pos(pos)
+{}
 
 //void MainMenu::calcMenu()
 //{
@@ -16,5 +14,4 @@ MainMenu::MainMenu(const COORD & size, const COORD & pos)
 //}
 
 MainMenu::~MainMenu()
-{
-}
+= default;

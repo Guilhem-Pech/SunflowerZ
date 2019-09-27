@@ -11,7 +11,7 @@ public:
 	COORD * posUserZ{};
 
 	void aimUpZ(bool upZ); // change the aiming direction
-	void useZ(); //shoot the weapons, will create a projectil with a base speed and a direction
+	void useZ() override; //shoot the weapons, will create a projectil with a base speed and a direction
 
 	virtual ProjectZ *getMunitionZ() = 0; //retrieve the munition of the weapon
 
@@ -22,7 +22,7 @@ public:
 class SunperZ : WeaponZ
 {
 public:
-	ProjectZ *getMunitionZ();
+	ProjectZ *getMunitionZ() override;
 
 	SunperZ();
 	~SunperZ();
