@@ -18,7 +18,7 @@ HANDLE hOutput;
 
 
 
-void calcSunflowerZ(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], std::vector<std::shared_ptr<EntityZ>> entityList) {
+void calcEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], std::vector<std::shared_ptr<EntityZ>> entityList) {
 	for(auto ent : entityList)
 	{
 		COORD coord = ent->getPos2DZ();
@@ -77,7 +77,7 @@ int main()
 	for (;;) {
 
 		calcMap(bufferConsole, m);
-		calcSunflowerZ(bufferConsole, EntityManagerZ::getInstance().getListOfEntityZ());
+		calcEntities(bufferConsole, EntityManagerZ::getInstance().getListOfEntityZ());
 		draw(rcRegion, bufferConsole);
 		
 		EntityManagerZ::getInstance().update();
