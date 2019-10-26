@@ -55,7 +55,7 @@ void MapZ::fillMap()
 		for (int x = 0; x <= y + a * a && x <= (SCREEN_WIDTH / 2); ++x)
 		{
 			cellsZ[x][y]->setAttribute(0x0080);
-			cellsZ[int(SCREEN_WIDTH) - 1 - x][y]->setAttribute(0x0080);
+			cellsZ[SCREEN_WIDTH - 1 - x][y]->setAttribute(0x0080);
 		}
 	}
 }

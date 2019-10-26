@@ -18,6 +18,7 @@
     <ClCompile Include="RockCellZ.cpp" />
     <ClCompile Include="EntityZ.cpp" />
     <ClCompile Include="EntityManagerZ.cpp" />
+    <ClCompile Include="EntityZFactoryZ.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CollisionControllerZ.h" />
@@ -35,5 +36,6 @@
     <ClInclude Include="RockCellZ.h" />
     <ClInclude Include="EntityZ.h" />
     <ClInclude Include="EntityManagerZ.h" />
+    <ClInclude Include="EntityZFactoryZ.h" />
   </ItemGroup>
 </Project>

@@ -28,7 +28,7 @@ void EntityZ::updateZ() {
 
 EntityZ::EntityZ()
 {
-	EntityManagerZ::registerZ(this);
+	
 }
 
 EntityZ::EntityZ(char sprite2DZ, const COORD& pos2dz): EntityZ()

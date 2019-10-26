@@ -43,7 +43,7 @@ void SunflowerZ::initZ() {
 	this->idObjectUsedZ = 0;
 }
 
-SunflowerZ::SunflowerZ(COORD pos = { 0,0 }) :EntityZ() {
+SunflowerZ::SunflowerZ(COORD pos) :EntityZ() {
 	this->pos2DZ = pos;
 	this->initZ();
 }

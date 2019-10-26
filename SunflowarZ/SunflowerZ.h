@@ -7,7 +7,7 @@
 #include <Windows.h>
 
 
-class SunflowerZ : EntityZ
+class SunflowerZ : public EntityZ
 {
 
 public:
@@ -25,7 +25,7 @@ public:
 
 	void initZ(); //initialize the SFZ with HP, movement and everything else.
 
-	SunflowerZ(COORD posZ);
+	SunflowerZ(COORD posZ = {0,0});
 	SunflowerZ(const std::vector<ObjectZ> &inventoryListZ, COORD posZ);
 	virtual ~SunflowerZ();
 

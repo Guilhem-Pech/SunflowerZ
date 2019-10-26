@@ -23,7 +23,7 @@ void calcSunflowerZ(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
 }
 
 
-void draw(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], MapZ* m)
+void drawMap(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], MapZ* m)
 {
 	for (int i = 0; i < m->getCellsZ().size(); ++i)
 	{
@@ -58,14 +58,28 @@ int main()
 	/**
 	 * Create and fill the MapZ
 	 */
+
+
+	EntityManagerZ::getInstance().spawnAndRegister("SunflowerZ", { 0,10 });
+	EntityManagerZ::getInstance().spawnAndRegister("SunflowerZ", { 2,10 });
+	EntityManagerZ::getInstance().spawnAndRegister("SunflowerZ", { 4,10 });
+	
+
+	for (auto element : EntityManagerZ::getInstance().getListOfEntityZ())
+	{
+		std::cout << element->pos2DZ.X << " " << element->pos2DZ.Y << std::endl;
+	}
+	
+	/*
 	MapZ *m = new MapZ({ SCREEN_HEIGHT,SCREEN_WIDTH });
 	m->fillMap();
-	
+
 	for (;;) {
 
-		draw(rcRegion, bufferConsole, m);
+		drawMap(rcRegion, bufferConsole, m);
 	
-	}		
+	}
+	*/
 }
 
 
