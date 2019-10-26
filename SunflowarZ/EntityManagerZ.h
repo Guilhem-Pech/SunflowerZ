@@ -4,6 +4,7 @@
 #include"EntityZ.h"
 #include <memory>
 #include <string>
+#include "EntityZFactoryZ.h"
 
 
 class EntityManagerZ
@@ -31,9 +32,9 @@ public:
 
 	bool checkIfSomeoneHere(COORD coord);
 
-	std::shared_ptr<EntityZ> spawnAndRegisterReturn(const std::string& description, COORD coord);
+	std::shared_ptr<EntityZ> spawnAndRegisterReturn(const EntityZFactoryZ::EntityType description, const COORD coord);
 	
-	void spawnAndRegister(const std::string& description, const COORD coord);
+	void spawnAndRegister(const EntityZFactoryZ::EntityType description, const COORD coord);
 
 	void update();
 }; 

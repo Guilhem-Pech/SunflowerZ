@@ -60,9 +60,9 @@ int main()
 	 */
 
 
-	EntityManagerZ::getInstance().spawnAndRegister("SunflowerZ", { 0,10 });
-	EntityManagerZ::getInstance().spawnAndRegister("SunflowerZ", { 2,10 });
-	EntityManagerZ::getInstance().spawnAndRegister("SunflowerZ", { 4,10 });
+	EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower, { 0,10 });
+	EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower, { 2,10 });
+	EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower, { 4,10 });
 
 	for (auto element : EntityManagerZ::getInstance().getListOfEntityZ())
 	{
@@ -76,7 +76,7 @@ int main()
 	for (;;) {
 
 		drawMap(rcRegion, bufferConsole, m);
-	
+		EntityManagerZ::getInstance().update();
 	}
 	*/
 }

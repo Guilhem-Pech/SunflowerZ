@@ -32,7 +32,7 @@ bool EntityManagerZ::checkIfSomeoneHere(COORD coord)
 }
 
 
-void EntityManagerZ::spawnAndRegister(const std::string& description, const COORD coord)
+void EntityManagerZ::spawnAndRegister(const EntityZFactoryZ::EntityType description, const COORD coord)
 {
 	this->listOfEntityZ.push_back(EntityZFactoryZ::NewEntity(description, coord));
 }
@@ -46,7 +46,7 @@ void EntityManagerZ::update()
 }
 
 
-std::shared_ptr<EntityZ> EntityManagerZ::spawnAndRegisterReturn(const std::string& description, const COORD coord)
+std::shared_ptr<EntityZ> EntityManagerZ::spawnAndRegisterReturn(const EntityZFactoryZ::EntityType description, const COORD coord)
 {
 	std::shared_ptr<EntityZ> ent(EntityZFactoryZ::NewEntity(description, coord));
 	this->listOfEntityZ.push_back(ent);

@@ -11,6 +11,6 @@ public:
 	{
 		Sunflower
 	};
-	static std::shared_ptr<EntityZ> NewEntity(const std::string& description, COORD coord);
+	static std::shared_ptr<EntityZ> NewEntity(const EntityType description, COORD coord);
 };
 
