@@ -18,12 +18,16 @@ HANDLE hOutput;
 
 
 
-void calcSunflowerZ(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
-	//TODO
+void calcSunflowerZ(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], std::vector<std::shared_ptr<EntityZ>> entityList) {
+	for(auto ent : entityList)
+	{
+		COORD coord = ent->getPos2DZ();
+		buffer[coord.X][coord.Y].Char.AsciiChar = ent->sprite2DZ;
+	}
 }
 
 
-void drawMap(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], MapZ* m)
+void calcMap(CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], MapZ* m)
 {
 	for (int i = 0; i < m->getCellsZ().size(); ++i)
 	{
@@ -33,10 +37,13 @@ void drawMap(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_
 			bufferConsole[j][i].Char.AsciiChar = m->getCellZ(i, j)->getSprite();
 		}
 	}
-	WriteConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize, dwBufferCoord, &rcRegion);
 }
 
 
+void draw(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH])
+{
+	WriteConsoleOutput(hOutput, (CHAR_INFO*)bufferConsole, dwBufferSize, dwBufferCoord, &rcRegion);
+}
 
 
 int main()
@@ -64,21 +71,18 @@ int main()
 	EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower, { 2,10 });
 	EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower, { 4,10 });
 
-	for (auto element : EntityManagerZ::getInstance().getListOfEntityZ())
-	{
-		std::cout << element->pos2DZ.X << " " << element->pos2DZ.Y << std::endl;
-	}
-	
-	/*
 	MapZ *m = new MapZ({ SCREEN_HEIGHT,SCREEN_WIDTH });
 	m->fillMap();
 
 	for (;;) {
 
-		drawMap(rcRegion, bufferConsole, m);
+		calcMap(bufferConsole, m);
+		calcSunflowerZ(bufferConsole, EntityManagerZ::getInstance().getListOfEntityZ());
+		draw(rcRegion, bufferConsole);
+		
 		EntityManagerZ::getInstance().update();
 	}
-	*/
+	
 }
 
 
