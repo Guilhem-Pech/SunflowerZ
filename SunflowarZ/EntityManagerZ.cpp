@@ -37,6 +37,14 @@ void EntityManagerZ::spawnAndRegister(const std::string& description, const COOR
 	this->listOfEntityZ.push_back(EntityZFactoryZ::NewEntity(description, coord));
 }
 
+void EntityManagerZ::update()
+{
+	for(auto ent : listOfEntityZ)
+	{
+		ent->updateZ();
+	}
+}
+
 
 std::shared_ptr<EntityZ> EntityManagerZ::spawnAndRegisterReturn(const std::string& description, const COORD coord)
 {

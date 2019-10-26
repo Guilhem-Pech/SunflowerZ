@@ -34,4 +34,6 @@ public:
 	std::shared_ptr<EntityZ> spawnAndRegisterReturn(const std::string& description, COORD coord);
 	
 	void spawnAndRegister(const std::string& description, const COORD coord);
+
+	void update();
 }; 
