@@ -1,9 +1,13 @@
 #include "pch.h"
 #include "EntityZFactoryZ.h"
+#include <memory>
+#include <memory>
 
-EntityZ* EntityZFactoryZ::NewEntity(const std::string& description, COORD coord = {0,0})
+std::shared_ptr<EntityZ> EntityZFactoryZ::NewEntity(const std::string& description, COORD coord = {0, 0})
 {
+	std::shared_ptr<EntityZ> result;
+	
 	if (description == "SunflowerZ")
-		return new SunflowerZ(coord);
-	return nullptr;
+		result = std::make_shared<SunflowerZ>(coord);
+	return result;
 }

@@ -63,7 +63,6 @@ int main()
 	EntityManagerZ::getInstance().spawnAndRegister("SunflowerZ", { 0,10 });
 	EntityManagerZ::getInstance().spawnAndRegister("SunflowerZ", { 2,10 });
 	EntityManagerZ::getInstance().spawnAndRegister("SunflowerZ", { 4,10 });
-	
 
 	for (auto element : EntityManagerZ::getInstance().getListOfEntityZ())
 	{

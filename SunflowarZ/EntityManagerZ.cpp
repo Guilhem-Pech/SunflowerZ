@@ -34,14 +34,13 @@ bool EntityManagerZ::checkIfSomeoneHere(COORD coord)
 
 void EntityManagerZ::spawnAndRegister(const std::string& description, const COORD coord)
 {
-	std::shared_ptr<EntityZ> ent(spawnAndRegisterReturn(description, coord));
+	this->listOfEntityZ.push_back(EntityZFactoryZ::NewEntity(description, coord));
 }
 
 
 std::shared_ptr<EntityZ> EntityManagerZ::spawnAndRegisterReturn(const std::string& description, const COORD coord)
 {
 	std::shared_ptr<EntityZ> ent(EntityZFactoryZ::NewEntity(description, coord));
-
 	this->listOfEntityZ.push_back(ent);
 	
 	return ent;
