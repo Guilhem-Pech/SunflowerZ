@@ -1,4 +1,4 @@
-﻿#include "pch.h"
+#include "pch.h"
 #include <random>
 #include "AirCellZ.h"
 #include <memory>
@@ -24,9 +24,9 @@ void MapZ::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
 }
 */
 
-std::vector<std::vector<std::shared_ptr<CellZ>>> MapZ::getCellsZ() const
+const std::vector<std::vector<std::shared_ptr<CellZ>>>* MapZ::getCellsZ() const
 {
-	return cellsZ;
+	return &cellsZ;
 }
 
 MapZ::MapZ(const COORD &size) :

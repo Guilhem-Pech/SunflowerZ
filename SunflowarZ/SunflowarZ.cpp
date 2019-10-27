@@ -32,14 +32,14 @@ void calcEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], const std::vect
 
 void calcMap(CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], MapZ* m)
 {
-	const std::vector<std::vector<std::shared_ptr<CellZ>>> &map = m->getCellsZ();
+	const std::vector<std::vector<std::shared_ptr<CellZ>>>* map = m->getCellsZ();
 	
-	for (int i(0); i < map.size(); ++i)
+	for (int i(0); i < map->size(); ++i)
 	{
 		
-		for (int j(0); j < map[i].size(); ++j)
+		for (int j(0); j < map->at(i).size(); ++j)
 		{
-			const std::shared_ptr<CellZ> cell(m->getCellZ(i, j));
+			const std::shared_ptr<CellZ> & cell(map->at(i)[j]);
 			bufferConsole[j][i].Attributes = cell->getAttributes();
 			bufferConsole[j][i].Char.AsciiChar = cell->getSprite();
 		}
