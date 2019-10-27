@@ -17,7 +17,7 @@ COORD dwBufferSize = { SCREEN_WIDTH,SCREEN_HEIGHT };
 COORD dwBufferCoord = { 0, 0 };
 HANDLE hOutput;
 
-int nbOfSunflowerZByTeam = 3; // Default number of sunflowerz
+int nbOfSunflowerZByTeam = 3; // Default number of sunflowerz TODO can be moved to the game manager ?
 
 
 void calcEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], std::vector<std::shared_ptr<EntityZ>> entityList) {
@@ -72,7 +72,9 @@ int main()
 	MapZ *m = new MapZ({ SCREEN_HEIGHT,SCREEN_WIDTH });
 	m->fillMap();
 	const int sizeY = m->getSizeZ().Y-1;
-	
+
+
+	// TODO Move those in the game manager ! 
 	for (int i = 0; i < nbOfSunflowerZByTeam; ++i)
 	{
 		EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower,
