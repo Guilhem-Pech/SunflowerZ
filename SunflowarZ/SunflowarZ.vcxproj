@@ -166,6 +166,7 @@
     <ClInclude Include="ProjectZ.h" />
     <ClInclude Include="RockCellZ.h" />
     <ClInclude Include="SunflowerZ.h" />
+    <ClInclude Include="Util.h" />
     <ClInclude Include="WeaponZ.h" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +192,7 @@
     <ClCompile Include="RockCellZ.cpp" />
     <ClCompile Include="SunflowarZ.cpp" />
     <ClCompile Include="SunflowerZ.cpp" />
+    <ClCompile Include="Util.cpp" />
     <ClCompile Include="WeaponZ.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

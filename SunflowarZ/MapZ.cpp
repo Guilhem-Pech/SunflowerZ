@@ -1,8 +1,9 @@
 ﻿#include "pch.h"
-#include "MapZ.h"
 #include <random>
 #include "AirCellZ.h"
 #include <memory>
+#include <iostream>
+#include "MapZ.h"
 
 /*
 void MapZ::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
@@ -23,16 +24,16 @@ void MapZ::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
 }
 */
 
-std::vector<std::vector<CellZ*>> MapZ::getCellsZ()
+std::vector<std::vector<std::shared_ptr<CellZ>>> MapZ::getCellsZ()
 {
 	return cellsZ;
 }
 
 MapZ::MapZ(const COORD &size) :
-	size(size), cellsZ(size.Y, std::vector<CellZ*>(size.X))
+	size(size)
 {}
 
-CellZ* MapZ::getCellZ(int x, int y)
+std::shared_ptr<CellZ> MapZ::getCellZ(int x, int y)
 {
 	std::shared_ptr<CellZ> c (new CellZ({0,0}));
 	
@@ -41,21 +42,24 @@ CellZ* MapZ::getCellZ(int x, int y)
 
 void MapZ::fillMap()
 {
-	for(short i = 0; i<cellsZ.size(); ++i)
-		for (short j = 0; j < cellsZ[i].size(); ++j)
-		{
-			if (cellsZ[i][j]) 
-				delete cellsZ[i][j];
-			cellsZ[i][j] = new AirCellZ({ j,i });
+	for (short i = 0; i < size.Y; ++i)
+	{
+		cellsZ.push_back(std::vector<std::shared_ptr<CellZ>>());
+		for (short j = 0; j < size.X; ++j)
+		{			
+			cellsZ[i].push_back(std::shared_ptr<AirCellZ>(new AirCellZ({ j,i })));
 		}
+		
+	}
+		
 
 
-	for (int y = 5; y <= (SCREEN_HEIGHT - 1); ++y) {
-		int a = y / 11;
-		for (int x = 0; x <= y + a * a && x <= (SCREEN_WIDTH / 2); ++x)
+	for (short y = 5; y <= (SCREEN_HEIGHT - 1); ++y) {
+		short a = y / 11;
+		for (short x = 0; x <= y + a * a && x <= (SCREEN_WIDTH / 2); ++x)
 		{
-			cellsZ[x][y]->setAttribute(0x0080);
-			cellsZ[SCREEN_WIDTH - 1 - x][y]->setAttribute(0x0080);
+			cellsZ[x][y] = std::shared_ptr<GroundCellZ>(new GroundCellZ({ x,y }));
+			cellsZ[SCREEN_WIDTH - 1 - x][y] = std::shared_ptr<GroundCellZ>(new GroundCellZ({ x,y }));
 		}
 	}
 }
@@ -74,21 +78,25 @@ T random_element(const std::vector<T> &vec)
 	return vec[choose(engine)];
 }
 
-CellZ* MapZ::getGoundCellZ(const int& y1)
+std::shared_ptr<CellZ> MapZ::getGroundCellZ(const int& y1)
 {
-	std::unique_ptr<std::vector<CellZ*>> suitable (new std::vector<CellZ*>());
-	for (CellZ *e : cellsZ[y1])
-		if (e->getTypeName() == "ground")
-			suitable->push_back(e);
+	std::vector<std::shared_ptr<CellZ>> suitable;
 
-	if (suitable->empty())
-		return nullptr;	
-	return random_element(*suitable);
+	for (int i = 1; i< cellsZ[y1].size(); ++i)
+	{
+		if(cellsZ[y1][i - 1]->getTypeName() == "air" && (cellsZ[y1][i]->getTypeName() == "ground"))
+		{			
+			suitable.push_back(cellsZ[y1][i-1]);
+		}
+			
+	}
+	if (suitable.empty())
+		return std::shared_ptr<CellZ>();
+	
+	return random_element(suitable);
 }
 
 MapZ::~MapZ()
 {
-	for (auto& i : cellsZ)
-		for (auto& j : i)
-			delete j;
+	
 }

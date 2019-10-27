@@ -12,10 +12,12 @@
 #define _WIN32_WINNT 0x0500
 #define SCREEN_WIDTH 100
 #define SCREEN_HEIGHT 40
+
 COORD dwBufferSize = { SCREEN_WIDTH,SCREEN_HEIGHT };
 COORD dwBufferCoord = { 0, 0 };
 HANDLE hOutput;
 
+int nbOfSunflowerZByTeam = 3; // Default number of sunflowerz
 
 
 void calcEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], std::vector<std::shared_ptr<EntityZ>> entityList) {
@@ -67,22 +69,33 @@ int main()
 	 */
 
 
-	EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower, { 0,10 });
-	EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower, { 2,10 });
-	EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower, { 4,10 });
-
 	MapZ *m = new MapZ({ SCREEN_HEIGHT,SCREEN_WIDTH });
 	m->fillMap();
+	const int sizeX = m->getSizeZ().Y-1;
+	
+	for (int i = 0; i < nbOfSunflowerZByTeam; ++i)
+	{
+		EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower,
+		                                               m->getGroundCellZ(rand() % sizeX / 2)->getPos(),
+		                                               EntityManagerZ::player1);
+
+	}
+
+	for (int i = 0; i < nbOfSunflowerZByTeam; ++i)
+	{
+		EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower,
+		                                               m->getGroundCellZ((rand() % sizeX / 2) + (sizeX / 2))->getPos(),
+		                                               EntityManagerZ::player2);
+	}
 
 	for (;;) {
 
 		calcMap(bufferConsole, m);
-		calcEntities(bufferConsole, EntityManagerZ::getInstance().getListOfEntityZ());
+		calcEntities(bufferConsole, EntityManagerZ::getInstance().getListOfEntitiesZ());
 		draw(rcRegion, bufferConsole);
 		
 		EntityManagerZ::getInstance().update();
 	}
-	
 }
 
 

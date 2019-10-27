@@ -6,6 +6,7 @@
 #include <vector>
 #include <Windows.h>
 
+class EntityZ;
 
 class SunflowerZ : public EntityZ
 {

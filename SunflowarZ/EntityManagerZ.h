@@ -3,21 +3,28 @@
 
 #include"EntityZ.h"
 #include <memory>
-#include <string>
 #include "EntityZFactoryZ.h"
 
+
+class EntityZ;
 
 class EntityManagerZ
 {
 private:
-	std::vector<std::shared_ptr<EntityZ>> listOfEntityZ;
+	std::vector<std::shared_ptr<EntityZ>> listOfEntities;
 
-
-
+	std::vector<std::shared_ptr<EntityZ>> listOfPlayers1Entities;
+	std::vector<std::shared_ptr<EntityZ>> listOfPlayers2Entities;
+	
 private:
 	EntityManagerZ() {}
 
 public:
+	enum owner
+	{
+		world, player1, player2
+	};
+	
 	static EntityManagerZ& getInstance()
 	{
 		static EntityManagerZ    instance; // Guaranteed to be destroyed.
@@ -28,13 +35,16 @@ public:
 	void operator=(EntityManagerZ const&) = delete;
 
 
-	std::vector<std::shared_ptr<EntityZ>> getListOfEntityZ() const;
+	std::vector<std::shared_ptr<EntityZ>> getListOfEntitiesZ() const;
+	std::vector<std::shared_ptr<EntityZ>> getListOfPlayersEntitiesZ(owner player) const;
 
 	bool checkIfSomeoneHere(COORD coord);
 
-	std::shared_ptr<EntityZ> spawnAndRegisterReturn(const EntityZFactoryZ::EntityType description, const COORD coord);
+	std::shared_ptr<EntityZ> spawnAndRegisterReturn(const EntityZFactoryZ::EntityType description, const COORD coord, owner owner);
 	
-	void spawnAndRegister(const EntityZFactoryZ::EntityType description, const COORD coord);
+	void spawnAndRegister(const EntityZFactoryZ::EntityType description, const COORD coord, owner owner);
 
+	void removeEntity(std::shared_ptr<EntityZ> entity, owner thePreviousOwner = world);
+	
 	void update();
 }; 
