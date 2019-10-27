@@ -46,13 +46,26 @@ void calcMap(CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], MapZ* m)
 	}
 }
 
+void writeString(CHAR_INFO bufferConsole[MENU_HEIGHT][SCREEN_WIDTH], string text, COORD begin, WORD attribute = 0x0000)
+{
+	for (int i(0); i < text.size(); ++i)
+	{
+		bufferConsole[begin.X][begin.Y + i].Char.AsciiChar = text[i];
+		bufferConsole[begin.X][begin.Y + i].Attributes = attribute;
+	}
+}
+
 void calcMenu(CHAR_INFO bufferConsole[MENU_HEIGHT][SCREEN_WIDTH])
 {
 	for (auto i(0); i < SCREEN_WIDTH; ++i)
 		for(auto j(0); j < MENU_HEIGHT; ++j){
 			bufferConsole[j][i].Attributes = BACKGROUND_RED | BACKGROUND_GREEN;
 	}
+
+	writeString(bufferConsole, "SunflowarZ", { 1,1 }, BACKGROUND_RED | BACKGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
+	writeString(bufferConsole, "Current player: ", { 3,1 }, BACKGROUND_RED | BACKGROUND_GREEN );
 }
+
 
 
 void draw(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH])
