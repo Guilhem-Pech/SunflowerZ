@@ -20,7 +20,7 @@ HANDLE hOutput;
 int nbOfSunflowerZByTeam = 3; // Default number of sunflowerz TODO can be moved to the game manager ?
 
 
-void calcEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], std::vector<std::shared_ptr<EntityZ>> entityList) {
+void calcEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], const std::vector<std::shared_ptr<EntityZ>>& entityList) {
 	for(auto ent : entityList)
 	{
 		COORD coord = ent->getPos2DZ();
@@ -31,9 +31,9 @@ void calcEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], std::vector<std
 
 void calcMap(CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], MapZ* m)
 {
-	for (int i = 0; i < m->getCellsZ().size(); ++i)
+	for (int i(0); i < m->getCellsZ().size(); ++i)
 	{
-		for (int j = 0; j < m->getCellsZ()[i].size(); ++j)
+		for (int j(0); j < m->getCellsZ()[i].size(); ++j)
 		{
 			bufferConsole[j][i].Attributes = m->getCellZ(i, j)->getAttributes();
 			bufferConsole[j][i].Char.AsciiChar = m->getCellZ(i, j)->getSprite();
