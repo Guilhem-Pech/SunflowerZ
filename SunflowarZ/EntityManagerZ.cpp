@@ -25,7 +25,7 @@ std::vector<std::shared_ptr<EntityZ>> EntityManagerZ::getListOfPlayersEntitiesZ(
 
 bool EntityManagerZ::checkIfSomeoneHere(COORD coord)
 {
-	for (auto e : listOfEntities)
+	for (const auto& e : listOfEntities)
 		if (e->getPos2DZ().X == coord.X && e->getPos2DZ().Y == coord.Y)
 			return true;
 	return false;
@@ -34,7 +34,7 @@ bool EntityManagerZ::checkIfSomeoneHere(COORD coord)
 
 void EntityManagerZ::spawnAndRegister(const EntityZFactoryZ::EntityType description, const COORD coord, EntityManagerZ::owner owner)
 {
-	std::shared_ptr<EntityZ> newEntity = EntityZFactoryZ::NewEntity(description, coord);
+	const std::shared_ptr<EntityZ> newEntity = EntityZFactoryZ::NewEntity(description, coord);
 	this->listOfEntities.push_back(newEntity);
 
 	switch (owner)
@@ -83,7 +83,7 @@ std::shared_ptr<EntityZ> EntityManagerZ::spawnAndRegisterReturn(const EntityZFac
 
 void EntityManagerZ::update()
 {
-	for (auto ent : listOfEntities)
+	for (const auto& ent : listOfEntities)
 	{
 		ent->updateZ();
 	}

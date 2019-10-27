@@ -42,7 +42,7 @@ void MapZ::fillMap()
 {
 	for (short i = 0; i < size.Y; ++i)
 	{
-		cellsZ.push_back(std::vector<std::shared_ptr<CellZ>>());
+		cellsZ.emplace_back();
 		for (short j = 0; j < size.X; ++j)
 		{			
 			cellsZ[i].push_back(std::shared_ptr<AirCellZ>(new AirCellZ({ j,i })));
@@ -95,6 +95,4 @@ std::shared_ptr<CellZ> MapZ::getGroundCellZ(const int& y1)
 }
 
 MapZ::~MapZ()
-{
-	
-}
+= default;
