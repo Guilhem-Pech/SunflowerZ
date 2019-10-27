@@ -71,12 +71,12 @@ int main()
 
 	MapZ *m = new MapZ({ SCREEN_HEIGHT,SCREEN_WIDTH });
 	m->fillMap();
-	const int sizeX = m->getSizeZ().Y-1;
+	const int sizeY = m->getSizeZ().Y-1;
 	
 	for (int i = 0; i < nbOfSunflowerZByTeam; ++i)
 	{
 		EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower,
-		                                               m->getGroundCellZ(rand() % sizeX / 2)->getPos(),
+		                                               m->getGroundCellZ(rand() % sizeY / 2)->getPos(),
 		                                               EntityManagerZ::player1);
 
 	}
@@ -84,7 +84,7 @@ int main()
 	for (int i = 0; i < nbOfSunflowerZByTeam; ++i)
 	{
 		EntityManagerZ::getInstance().spawnAndRegister(EntityZFactoryZ::Sunflower,
-		                                               m->getGroundCellZ((rand() % sizeX / 2) + (sizeX / 2))->getPos(),
+		                                               m->getGroundCellZ((rand() % sizeY / 2) + (sizeY / 2))->getPos(),
 		                                               EntityManagerZ::player2);
 	}
 
