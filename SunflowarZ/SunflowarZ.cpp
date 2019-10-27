@@ -21,7 +21,7 @@ int nbOfSunflowerZByTeam = 3; // Default number of sunflowerz TODO can be moved 
 
 
 void calcEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], const std::vector<std::shared_ptr<EntityZ>>& entityList) {
-	for(auto ent : entityList)
+	for(const auto& ent : entityList)
 	{
 		COORD coord = ent->getPos2DZ();
 		buffer[coord.X][coord.Y].Char.AsciiChar = ent->sprite2DZ;
@@ -31,7 +31,7 @@ void calcEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], const std::vect
 
 void calcMap(CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], MapZ* m)
 {
-	std::vector<std::vector<std::shared_ptr<CellZ>>> map = m->getCellsZ();
+	const std::vector<std::vector<std::shared_ptr<CellZ>>> &map = m->getCellsZ();
 	
 	for (int i(0); i < map.size(); ++i)
 	{
