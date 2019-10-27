@@ -24,7 +24,7 @@ void MapZ::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
 }
 */
 
-std::vector<std::vector<std::shared_ptr<CellZ>>> MapZ::getCellsZ()
+std::vector<std::vector<std::shared_ptr<CellZ>>> MapZ::getCellsZ() const
 {
 	return cellsZ;
 }
@@ -34,9 +34,7 @@ MapZ::MapZ(const COORD &size) :
 {}
 
 std::shared_ptr<CellZ> MapZ::getCellZ(int x, int y)
-{
-	std::shared_ptr<CellZ> c (new CellZ({0,0}));
-	
+{	
 	return cellsZ[x][y];
 }
 

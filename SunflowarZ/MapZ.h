@@ -17,7 +17,7 @@ private:
 	
 public:
 
-	std::vector<std::vector<std::shared_ptr<CellZ>>> getCellsZ();
+	std::vector<std::vector<std::shared_ptr<CellZ>>> getCellsZ() const;
 	
 	MapZ(const COORD &size);
 
