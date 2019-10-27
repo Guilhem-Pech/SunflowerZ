@@ -12,6 +12,7 @@
 #define _WIN32_WINNT 0x0500
 #define SCREEN_WIDTH 100
 #define SCREEN_HEIGHT 40
+#define MENU_HEIGHT 10
 
 COORD dwBufferSize = { SCREEN_WIDTH,SCREEN_HEIGHT };
 COORD dwBufferCoord = { 0, 0 };
@@ -45,6 +46,14 @@ void calcMap(CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH], MapZ* m)
 	}
 }
 
+void calcMenu(CHAR_INFO bufferConsole[MENU_HEIGHT][SCREEN_WIDTH])
+{
+	for (auto i(0); i < SCREEN_WIDTH; ++i)
+		for(auto j(0); j < MENU_HEIGHT; ++j){
+			bufferConsole[j][i].Attributes = BACKGROUND_RED | BACKGROUND_GREEN;
+	}
+}
+
 
 void draw(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH])
 {
@@ -54,19 +63,21 @@ void draw(SMALL_RECT rcRegion, CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WID
 
 int main()
 {
-
+	bool inGame = true;
 	HWND consoleWindow = GetConsoleWindow();
 	SetWindowLong(consoleWindow, GWL_STYLE, GetWindowLong(consoleWindow, GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
 	MoveWindow(consoleWindow, 40, 100, 840, 840, TRUE);
 	   	
 	hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
 
-	SMALL_RECT rcRegion = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
+	SMALL_RECT gameView = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
+	SMALL_RECT menuView = { 0, SCREEN_HEIGHT, SCREEN_WIDTH - 1, (SCREEN_HEIGHT - 1) + MENU_HEIGHT };
 
 
-	CHAR_INFO bufferConsole[SCREEN_HEIGHT][SCREEN_WIDTH] = {};
+	CHAR_INFO bufferGameview[SCREEN_HEIGHT][SCREEN_WIDTH] = {};
+	CHAR_INFO bufferMenuview[MENU_HEIGHT][SCREEN_WIDTH] = {};
 
-	ReadConsoleOutput(hOutput, (CHAR_INFO *)bufferConsole, dwBufferSize,dwBufferCoord, &rcRegion);
+	ReadConsoleOutput(hOutput, (CHAR_INFO *)bufferGameview, dwBufferSize,dwBufferCoord, &gameView);
 
 	/**
 	 * Create and fill the MapZ
@@ -94,14 +105,16 @@ int main()
 		                                               EntityManagerZ::player2);
 	}
 
-	for (;;) {
+	for (;inGame;) {
 
-		calcMap(bufferConsole, m);
-		calcEntities(bufferConsole, EntityManagerZ::getInstance().getListOfEntitiesZ());
-		draw(rcRegion, bufferConsole);
-		
+		calcMap(bufferGameview, m);
+		calcEntities(bufferGameview, EntityManagerZ::getInstance().getListOfEntitiesZ());
+		draw(gameView, bufferGameview);
+		calcMenu(bufferMenuview);
+		draw(menuView, bufferMenuview);
 		EntityManagerZ::getInstance().update();
 	}
+	delete(m);
 }
 
 
