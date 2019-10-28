@@ -161,6 +161,7 @@
     <ClInclude Include="GroundCellZ.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MapZ.h" />
+    <ClInclude Include="NYTimer.h" />
     <ClInclude Include="ObjectZ.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ProjectZ.h" />

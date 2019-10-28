@@ -6,27 +6,27 @@
 #include "MapZ.h"
 
 /*
-void MapZ::calc(CHAR_INFO buffer[][SCREEN_WIDTH]) {
+void MapZ::calc(CHAR_INFO bufferGame[][SCREEN_WIDTH]) {
 	for (int x = 0; x < SCREEN_WIDTH; ++x) {
 		for (int y = 0; y < SCREEN_HEIGHT; ++y) {
-			buffer[y][x].Attributes = 0x00b0;
+			bufferGame[y][x].Attributes = 0x00b0;
 		}
 	}
 
 	for (int y = 5; y <= (SCREEN_HEIGHT - 1); ++y) {
 		int a = y / 11;
 		for (int x = 0; x <= y + a * a && x <= (SCREEN_WIDTH / 2); ++x) {
-			buffer[y][x].Attributes = 0x0080;
-			buffer[y][SCREEN_WIDTH - 1 - x].Attributes = 0x0080;
+			bufferGame[y][x].Attributes = 0x0080;
+			bufferGame[y][SCREEN_WIDTH - 1 - x].Attributes = 0x0080;
 		}
 	}
 
 }
 */
 
-const std::vector<std::vector<std::shared_ptr<CellZ>>>* MapZ::getCellsZ() const
+const std::vector<std::vector<std::shared_ptr<CellZ>>>& MapZ::getCellsZ() const
 {
-	return &cellsZ;
+	return cellsZ;
 }
 
 MapZ::MapZ(const COORD &size) :
@@ -44,8 +44,9 @@ void MapZ::fillMap()
 	{
 		cellsZ.emplace_back();
 		for (short j = 0; j < size.X; ++j)
-		{			
-			cellsZ[i].push_back(std::shared_ptr<AirCellZ>(new AirCellZ({ j,i })));
+		{
+			COORD coord = { j,i };
+			cellsZ[i].push_back(std::make_shared<AirCellZ>(coord));
 		}
 		
 	}
@@ -56,8 +57,9 @@ void MapZ::fillMap()
 		short a = y / 11;
 		for (short x = 0; x <= y + a * a && x <= (SCREEN_WIDTH / 2); ++x)
 		{
-			cellsZ[x][y] = std::shared_ptr<GroundCellZ>(new GroundCellZ({ x,y }));
-			cellsZ[SCREEN_WIDTH - 1 - x][y] = std::shared_ptr<GroundCellZ>(new GroundCellZ({ x,y }));
+			COORD coord = { x,y };
+			cellsZ[x][y] = std::make_shared<GroundCellZ>(coord);
+			cellsZ[SCREEN_WIDTH - 1 - x][y] = std::make_shared<GroundCellZ>(coord);
 		}
 	}
 }

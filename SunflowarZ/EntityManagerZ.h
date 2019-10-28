@@ -35,7 +35,7 @@ public:
 	void operator=(EntityManagerZ const&) = delete;
 
 
-	std::vector<std::shared_ptr<EntityZ>> getListOfEntitiesZ() const;
+	const std::vector<std::shared_ptr<EntityZ>> & getListOfEntitiesZ() const;
 	std::vector<std::shared_ptr<EntityZ>> getListOfPlayersEntitiesZ(owner player) const;
 
 	bool checkIfSomeoneHere(COORD coord);

@@ -2,19 +2,127 @@
 #include "GameZ.h"
 #include <random>
 
-
-GameZ::GameZ(int numberSFZ): maxSFZ(0)
+void GameZ::update() const
 {
-	this->mapZ = new MapZ({ 100,40 }); //TODO modulable
-	this->collisionZ = new CollisionControllerZ(mapZ);
-	for (int i = 0; i < maxSFZ; ++i) {
-		COORD temp = mapZ->getGroundCellZ(rand() % mapZ->getSizeZ().X)->getPos();
-		++temp.X;
-		++temp.Y;
-		auto* sunflowerZ = new SunflowerZ(temp);
+	entityManager->update();
+}
+
+
+void GameZ::calcMap()
+{
+	const std::vector<std::vector<std::shared_ptr<CellZ>>> & map = mapZ->getCellsZ();
+
+	for (int i(0); i < map.size(); ++i)
+	{
+		for (int j(0); j < map[i].size(); ++j)
+		{
+			const std::shared_ptr<CellZ>& cell(map[i][j]);
+			bufferGame[j][i].Attributes = cell->getAttributes();
+			bufferGame[j][i].Char.AsciiChar = cell->getSprite();
+		}
+	}
+}
+
+void GameZ::calcEntities()
+{
+	for (const auto& ent : entityManager->getListOfEntitiesZ())
+	{
+		COORD coord = ent->getPos2DZ();
+		bufferGame[coord.X][coord.Y].Char.AsciiChar = ent->sprite2DZ;
 	}
 }
 
 
+void GameZ::calcMenu()
+{
+	for (auto i(0); i < SCREEN_WIDTH; ++i)
+		for (auto j(0); j < MENU_HEIGHT; ++j) {
+			bufferMenu[j][i].Attributes = BACKGROUND_RED | BACKGROUND_GREEN;
+		}
+
+	writeString(bufferMenu, "SunflowarZ", { 1,1 }, BACKGROUND_RED | BACKGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
+	writeString(bufferMenu, "Current player: ", { 3,1 }, BACKGROUND_RED | BACKGROUND_GREEN);
+}
+
+void GameZ::draw(SMALL_RECT rcRegion, const CHAR_INFO* bufferConsole)
+{
+	WriteConsoleOutput(hOutput, bufferConsole, dwBufferSize, dwBufferCoord, &rcRegion);
+}
+
+void GameZ::writeString(CHAR_INFO bufferConsole[MENU_HEIGHT][SCREEN_WIDTH], string text, COORD begin,
+                        WORD attribute)
+{
+	for (int i(0); i < text.size(); ++i)
+	{
+		bufferConsole[begin.X][begin.Y + i].Char.AsciiChar = text[i];
+		bufferConsole[begin.X][begin.Y + i].Attributes = attribute;
+	}
+}
+
+void GameZ::init()
+{
+	mapZ.reset(new MapZ({ SCREEN_HEIGHT,SCREEN_WIDTH }));
+	mapZ->fillMap();
+	const int sizeY = mapZ->getSizeZ().Y - 1;
+	
+	for (int i = 0; i < nbOfSunflowerZByTeam; ++i)
+	{
+		entityManager->spawnAndRegister(EntityZFactoryZ::Sunflower,
+			mapZ->getGroundCellZ(rand() % sizeY / 2)->getPos(),
+			EntityManagerZ::player1);
+
+	}
+
+	for (int i = 0; i < nbOfSunflowerZByTeam; ++i)
+	{
+		entityManager->spawnAndRegister(EntityZFactoryZ::Sunflower,
+			mapZ->getGroundCellZ((rand() % sizeY / 2) + (sizeY / 2))->getPos(),
+			EntityManagerZ::player2);
+	}
+}
+
+GameZ::GameZ() : hOutput((HANDLE)GetStdHandle(STD_OUTPUT_HANDLE)), entityManager(&EntityManagerZ::getInstance())
+{
+	time.getElapsedMs(true);
+	
+	HWND consoleWindow = GetConsoleWindow();
+	SetWindowLong(consoleWindow, GWL_STYLE, GetWindowLong(consoleWindow, GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
+	MoveWindow(consoleWindow, 40, 100, 840, 840, TRUE);
+
+	ReadConsoleOutput(hOutput, (CHAR_INFO*)bufferGame, dwBufferSize, dwBufferCoord, &gameView);
+	ReadConsoleOutput(hOutput, (CHAR_INFO*)bufferMenu, dwBufferSize, dwBufferCoord, &menuView);
+}
+
 GameZ::~GameZ()
 = default;
+
+GameZ* GameZ::get()
+{
+	static GameZ game;
+	return &game;
+}
+
+CHAR_INFO* GameZ::getBuffer()
+{
+	return *this->bufferGame;
+}
+
+const EntityManagerZ& GameZ::getEntManager() const
+{
+	return *entityManager;
+}
+
+void GameZ::run()
+{
+	init();
+	bool exit = false;
+	for(;!exit;)
+	{
+		calcMap();
+		calcEntities();
+		draw(gameView, (CHAR_INFO*) bufferGame);
+		calcMenu();
+		draw(menuView, (CHAR_INFO*) bufferMenu);
+		update();		
+	}
+}

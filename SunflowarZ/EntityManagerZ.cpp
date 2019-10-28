@@ -4,7 +4,7 @@
 #include <algorithm>
 
 
-std::vector<std::shared_ptr<EntityZ>> EntityManagerZ::getListOfEntitiesZ() const
+const std::vector<std::shared_ptr<EntityZ>>& EntityManagerZ::getListOfEntitiesZ() const
 {
 	return listOfEntities;
 }

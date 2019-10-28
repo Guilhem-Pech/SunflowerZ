@@ -6,17 +6,50 @@
 #include "CollisionControllerZ.h"
 #include "EntityManagerZ.h"
 #include "MapZ.h"
+#include "NYTimer.h"
 
+#define _WIN32_WINNT 0x0500
+#define SCREEN_WIDTH 100
+#define SCREEN_HEIGHT 40
+#define MENU_HEIGHT 10
 
 class GameZ
 {
-public:
+private:
+	HANDLE hOutput;
+	CHAR_INFO bufferGame[SCREEN_HEIGHT][SCREEN_WIDTH];
+	CHAR_INFO bufferMenu[MENU_HEIGHT][SCREEN_WIDTH];
+	
+	COORD dwBufferSize = { SCREEN_WIDTH,SCREEN_HEIGHT };
+	COORD dwBufferCoord = { 0, 0 };
 
-	int const maxSFZ;
-	MapZ * mapZ;
-	CollisionControllerZ * collisionZ;
-
-	GameZ(int numberSFZ);
+	SMALL_RECT gameView = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
+	SMALL_RECT menuView = { 0, SCREEN_HEIGHT, SCREEN_WIDTH - 1, (SCREEN_HEIGHT - 1) + MENU_HEIGHT };
+	
+	std::unique_ptr<EntityManagerZ> entityManager;
+	std::unique_ptr<MapZ> mapZ;
+	
+	void update() const;
+	void calcMap();
+	void calcEntities();
+	void calcMenu();
+	
+	void draw(SMALL_RECT rcRegion, const CHAR_INFO* bufferConsole);
+	void DrawMenu();
+	void showText(int y, std::string text, int color);
+	void init();
+	GameZ();
 	~GameZ();
+	
+public:
+	int nbOfSunflowerZByTeam = 3;
+	NYTimer time;
+	static GameZ* get();
+	CHAR_INFO* getBuffer();
+	const EntityManagerZ& getEntManager() const;
+	static void writeString(CHAR_INFO bufferConsole[MENU_HEIGHT][SCREEN_WIDTH], string text, COORD begin,
+		WORD attribute = 0x0000);
+	void run();
+	
 };
 

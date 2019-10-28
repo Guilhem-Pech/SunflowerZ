@@ -39,5 +39,6 @@
     <ClInclude Include="EntityManagerZ.h" />
     <ClInclude Include="EntityZFactoryZ.h" />
     <ClInclude Include="Util.h" />
+    <ClInclude Include="NYTimer.h" />
   </ItemGroup>
 </Project>
