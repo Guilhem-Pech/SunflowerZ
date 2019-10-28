@@ -32,6 +32,18 @@ void GameZ::calcEntities()
 	}
 }
 
+string GameZ::getCurrentPlayerString() const
+{
+	switch (currentPlayer)
+	{
+	case EntityManagerZ::owner::player1:
+		return "Player 1";
+	case EntityManagerZ::owner::player2:
+		return "Player 2";
+	default:
+		return "Unknown";
+	}
+}
 
 void GameZ::calcMenu()
 {
@@ -42,11 +54,12 @@ void GameZ::calcMenu()
 
 	writeString(bufferMenu, "SunflowarZ", { 1,1 }, BACKGROUND_RED | BACKGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
 	writeString(bufferMenu, "Current player: ", { 3,1 }, BACKGROUND_RED | BACKGROUND_GREEN);
+	writeString(bufferMenu, getCurrentPlayerString(), { 3,18 }, BACKGROUND_RED | BACKGROUND_BLUE);
 }
 
-void GameZ::draw(SMALL_RECT rcRegion, const CHAR_INFO* bufferConsole)
+void GameZ::draw(SMALL_RECT rcRegion, const CHAR_INFO* bufferConsole) const
 {
-	WriteConsoleOutput(hOutput, bufferConsole, dwBufferSize, dwBufferCoord, &rcRegion);
+	WriteConsoleOutput(hOutput, bufferConsole, dwBufferSizeGame, dwBufferCoord, &rcRegion);
 }
 
 void GameZ::writeString(CHAR_INFO bufferConsole[MENU_HEIGHT][SCREEN_WIDTH], string text, COORD begin,
@@ -89,8 +102,8 @@ GameZ::GameZ() : hOutput((HANDLE)GetStdHandle(STD_OUTPUT_HANDLE)), entityManager
 	SetWindowLong(consoleWindow, GWL_STYLE, GetWindowLong(consoleWindow, GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
 	MoveWindow(consoleWindow, 40, 100, 840, 840, TRUE);
 
-	ReadConsoleOutput(hOutput, (CHAR_INFO*)bufferGame, dwBufferSize, dwBufferCoord, &gameView);
-	ReadConsoleOutput(hOutput, (CHAR_INFO*)bufferMenu, dwBufferSize, dwBufferCoord, &menuView);
+	ReadConsoleOutput(hOutput, (CHAR_INFO*)bufferGame, dwBufferSizeGame, dwBufferCoord, &gameView);	
+	ReadConsoleOutput(hOutput, (CHAR_INFO*)bufferMenu, dwBufferSizeMenu, dwBufferCoord, &menuView);
 }
 
 GameZ::~GameZ()

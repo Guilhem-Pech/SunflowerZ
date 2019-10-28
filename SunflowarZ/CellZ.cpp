@@ -24,7 +24,7 @@ void CellZ::setPos(const COORD &newCoordinates)
 	this->pos = newCoordinates;
 }
 
-COORD CellZ::getPos() const
+const COORD & CellZ::getPos() const
 {
 	return this->pos;
 }

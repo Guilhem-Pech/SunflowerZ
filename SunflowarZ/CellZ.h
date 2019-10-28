@@ -19,7 +19,7 @@ public:
 	CellZ(const COORD &position, const char &sprite = ' ');
 	void setSprite(const char &c);
 	void setPos(const COORD &newCoordinates);
-	COORD getPos() const;
+	const COORD & getPos() const;
 	virtual string getTypeName();
 	WORD getAttributes() const;
 	char getSprite() const;

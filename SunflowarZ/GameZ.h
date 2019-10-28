@@ -20,7 +20,8 @@ private:
 	CHAR_INFO bufferGame[SCREEN_HEIGHT][SCREEN_WIDTH];
 	CHAR_INFO bufferMenu[MENU_HEIGHT][SCREEN_WIDTH];
 	
-	COORD dwBufferSize = { SCREEN_WIDTH,SCREEN_HEIGHT };
+	COORD dwBufferSizeGame = { SCREEN_WIDTH,SCREEN_HEIGHT };
+	COORD dwBufferSizeMenu = { SCREEN_WIDTH,MENU_HEIGHT };
 	COORD dwBufferCoord = { 0, 0 };
 
 	SMALL_RECT gameView = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
@@ -32,15 +33,17 @@ private:
 	void update() const;
 	void calcMap();
 	void calcEntities();
+	string getCurrentPlayerString() const;
 	void calcMenu();
 	
-	void draw(SMALL_RECT rcRegion, const CHAR_INFO* bufferConsole);
+	void draw(SMALL_RECT rcRegion, const CHAR_INFO* bufferConsole) const;
 	void DrawMenu();
 	void showText(int y, std::string text, int color);
 	void init();
 	GameZ();
 	~GameZ();
-	
+
+	EntityManagerZ::owner currentPlayer = EntityManagerZ::owner::player1;
 public:
 	int nbOfSunflowerZByTeam = 3;	
 	NYTimer time;
