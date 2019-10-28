@@ -13,9 +13,9 @@ std::vector<std::shared_ptr<EntityZ>> EntityManagerZ::getListOfPlayersEntitiesZ(
 {
 	switch (player)
 	{
-	case player1:
+	case owner::player1:
 		return listOfPlayers1Entities;
-	case player2:
+	case owner::player2:
 		return listOfPlayers2Entities;
 	default:
 		return {};
@@ -39,10 +39,10 @@ void EntityManagerZ::spawnAndRegister(const EntityZFactoryZ::EntityType descript
 
 	switch (owner)
 	{
-	case player1:
+	case owner::player1:
 		listOfPlayers1Entities.push_back(newEntity);
 		break;
-	case player2:
+	case owner::player2:
 		listOfPlayers2Entities.push_back(newEntity);
 		break;
 	default:
@@ -54,11 +54,11 @@ void EntityManagerZ::removeEntity(std::shared_ptr<EntityZ> entity, owner thePrev
 {
 	switch (thePreviousOwner)
 	{
-	case player1:
+	case owner::player1:
 		listOfPlayers1Entities.erase(std::remove(listOfPlayers1Entities.begin(), listOfPlayers1Entities.end(), entity),
 		                             listOfPlayers1Entities.end());
 		break;
-	case player2:
+	case owner::player2:
 		listOfPlayers2Entities.erase(std::remove(listOfPlayers2Entities.begin(), listOfPlayers2Entities.end(), entity),
 		                             listOfPlayers2Entities.end());
 		break;

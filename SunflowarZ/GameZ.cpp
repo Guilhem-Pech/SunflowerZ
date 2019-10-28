@@ -69,7 +69,7 @@ void GameZ::init()
 	{
 		entityManager->spawnAndRegister(EntityZFactoryZ::Sunflower,
 			mapZ->getGroundCellZ(rand() % sizeY / 2)->getPos(),
-			EntityManagerZ::player1);
+			EntityManagerZ::owner::player1);
 
 	}
 
@@ -77,7 +77,7 @@ void GameZ::init()
 	{
 		entityManager->spawnAndRegister(EntityZFactoryZ::Sunflower,
 			mapZ->getGroundCellZ((rand() % sizeY / 2) + (sizeY / 2))->getPos(),
-			EntityManagerZ::player2);
+			EntityManagerZ::owner::player2);
 	}
 }
 
@@ -116,11 +116,20 @@ void GameZ::run()
 {
 	init();
 	bool exit = false;
-	for(;!exit;)
+	
+	EntityManagerZ::owner currentPlayer = EntityManagerZ::owner::player1;
+	
+	const std::vector<std::shared_ptr<EntityZ>>& player1Sunflowers = entityManager->getListOfPlayersEntitiesZ(
+		EntityManagerZ::owner::player1);
+
+	const std::vector<std::shared_ptr<EntityZ>>& player2Sunflowers = entityManager->getListOfPlayersEntitiesZ(
+		EntityManagerZ::owner::player2);
+	   	
+	for (; !exit;)
 	{
 		calcMap();
 		calcEntities();
-		draw(gameView, (CHAR_INFO*) bufferGame);
+		draw(gameView, (CHAR_INFO*)bufferGame);
 		calcMenu();
 		draw(menuView, (CHAR_INFO*) bufferMenu);
 		update();		

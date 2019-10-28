@@ -42,7 +42,7 @@ private:
 	~GameZ();
 	
 public:
-	int nbOfSunflowerZByTeam = 3;
+	int nbOfSunflowerZByTeam = 3;	
 	NYTimer time;
 	static GameZ* get();
 	CHAR_INFO* getBuffer();

@@ -20,7 +20,7 @@ private:
 	EntityManagerZ() {}
 
 public:
-	enum owner
+	enum class owner
 	{
 		world, player1, player2
 	};
@@ -44,7 +44,7 @@ public:
 	
 	void spawnAndRegister(const EntityZFactoryZ::EntityType description, const COORD coord, owner owner);
 
-	void removeEntity(std::shared_ptr<EntityZ> entity, owner thePreviousOwner = world);
+	void removeEntity(std::shared_ptr<EntityZ> entity, owner thePreviousOwner = owner::world);
 	
 	void update();
 }; 
