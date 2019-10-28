@@ -1,10 +1,5 @@
 #include "pch.h"
-#include <random>
-#include "AirCellZ.h"
-#include <memory>
-#include <iostream>
 #include "MapZ.h"
-
 /*
 void MapZ::calc(CHAR_INFO bufferGame[][SCREEN_WIDTH]) {
 	for (int x = 0; x < SCREEN_WIDTH; ++x) {
@@ -23,6 +18,7 @@ void MapZ::calc(CHAR_INFO bufferGame[][SCREEN_WIDTH]) {
 
 }
 */
+class Util;
 
 const std::vector<std::vector<std::shared_ptr<CellZ>>>& MapZ::getCellsZ() const
 {
@@ -69,15 +65,6 @@ COORD MapZ::getSizeZ() const {
 	return this->size;
 }
 
-template<typename T>
-T random_element(const std::vector<T> &vec)
-{
-	std::random_device seed;
-	std::mt19937 engine(seed());
-	const std::uniform_int_distribution<int> choose(0, vec.size() - 1);
-	return vec[choose(engine)];
-}
-
 std::shared_ptr<CellZ> MapZ::getGroundCellZ(const int& y1)
 {
 	std::vector<std::shared_ptr<CellZ>> suitable;
@@ -91,9 +78,8 @@ std::shared_ptr<CellZ> MapZ::getGroundCellZ(const int& y1)
 			
 	}
 	if (suitable.empty())
-		return std::shared_ptr<CellZ>();
-	
-	return random_element(suitable);
+		return std::shared_ptr<CellZ>();	
+	return Util::randomElement(suitable);
 }
 
 MapZ::~MapZ()

@@ -1,9 +1,11 @@
 ﻿#pragma once
 
 #include <Windows.h>
+#include "Util.h"
 #include "GroundCellZ.h"
 #include <vector>
 #include <memory>
+#include "AirCellZ.h"
 
 #define SCREEN_WIDTH 100
 #define SCREEN_HEIGHT 40

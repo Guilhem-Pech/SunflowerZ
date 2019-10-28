@@ -30,6 +30,9 @@ private:
 	std::unique_ptr<EntityManagerZ> entityManager;
 	std::unique_ptr<MapZ> mapZ;
 	
+	short indexSunflowersP1 = 0;
+	short indexSunflowersP2 = 0;
+	
 	void update() const;
 	void calcMap();
 	void calcEntities();
@@ -50,6 +53,8 @@ public:
 	static GameZ* get();
 	CHAR_INFO* getBuffer();
 	const EntityManagerZ& getEntManager() const;
+	std::shared_ptr<EntityZ> getCurrentSunflowerZ();
+	void changeCurrentSunflowerZ();
 	static void writeString(CHAR_INFO bufferConsole[MENU_HEIGHT][SCREEN_WIDTH], string text, COORD begin,
 		WORD attribute = 0x0000);
 	void run();

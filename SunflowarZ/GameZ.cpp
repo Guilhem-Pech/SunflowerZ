@@ -29,6 +29,8 @@ void GameZ::calcEntities()
 	{
 		COORD coord = ent->getPos2DZ();
 		bufferGame[coord.X][coord.Y].Char.AsciiChar = ent->sprite2DZ;
+		if (ent == getCurrentSunflowerZ())
+			bufferGame[coord.X][coord.Y].Attributes = BACKGROUND_RED;
 	}
 }
 
@@ -123,6 +125,30 @@ CHAR_INFO* GameZ::getBuffer()
 const EntityManagerZ& GameZ::getEntManager() const
 {
 	return *entityManager;
+}
+
+std::shared_ptr<EntityZ> GameZ::getCurrentSunflowerZ()
+{
+		return entityManager->getListOfPlayersEntitiesZ(currentPlayer).at(
+			currentPlayer == EntityManagerZ::owner::player1
+				? indexSunflowersP1
+				: indexSunflowersP2);
+}
+
+void GameZ::changeCurrentSunflowerZ()
+{
+	if(currentPlayer == EntityManagerZ::owner::player1)
+	{
+		++indexSunflowersP1;
+		if (indexSunflowersP1 >= entityManager->getListOfPlayersEntitiesZ(currentPlayer).size())
+			indexSunflowersP1 = 0;
+	}
+	else
+	{
+		++indexSunflowersP2;
+		if (indexSunflowersP2 >= entityManager->getListOfPlayersEntitiesZ(currentPlayer).size())
+			indexSunflowersP2 = 0;
+	}
 }
 
 void GameZ::run()

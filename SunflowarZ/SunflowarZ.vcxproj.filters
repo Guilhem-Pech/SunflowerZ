@@ -19,7 +19,6 @@
     <ClCompile Include="EntityZ.cpp" />
     <ClCompile Include="EntityManagerZ.cpp" />
     <ClCompile Include="EntityZFactoryZ.cpp" />
-    <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CollisionControllerZ.h" />
