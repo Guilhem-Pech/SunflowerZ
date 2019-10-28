@@ -76,7 +76,6 @@ void GameZ::writeString(CHAR_INFO bufferConsole[MENU_HEIGHT][SCREEN_WIDTH], stri
 
 void GameZ::init()
 {
-	mapZ.reset(new MapZ({ SCREEN_HEIGHT,SCREEN_WIDTH }));
 	mapZ->fillMap();
 	const int sizeY = mapZ->getSizeZ().Y - 1;
 	
@@ -96,8 +95,11 @@ void GameZ::init()
 	}
 }
 
-GameZ::GameZ() : hOutput((HANDLE)GetStdHandle(STD_OUTPUT_HANDLE)), entityManager(&EntityManagerZ::getInstance())
+GameZ::GameZ() : hOutput((HANDLE)GetStdHandle(STD_OUTPUT_HANDLE)), entityManager(EntityManagerZ::getInstance())
 {
+	COORD size = { SCREEN_HEIGHT,SCREEN_WIDTH };
+	mapZ = std::make_unique<MapZ>(size);
+	
 	time.getElapsedMs(true);
 	
 	HWND consoleWindow = GetConsoleWindow();
@@ -108,8 +110,7 @@ GameZ::GameZ() : hOutput((HANDLE)GetStdHandle(STD_OUTPUT_HANDLE)), entityManager
 	ReadConsoleOutput(hOutput, (CHAR_INFO*)bufferMenu, dwBufferSizeMenu, dwBufferCoord, &menuView);
 }
 
-GameZ::~GameZ()
-= default;
+GameZ::~GameZ(){}
 
 GameZ* GameZ::get()
 {
@@ -158,19 +159,16 @@ void GameZ::run()
 	
 	EntityManagerZ::owner currentPlayer = EntityManagerZ::owner::player1;
 	
-	const std::vector<std::shared_ptr<EntityZ>>& player1Sunflowers = entityManager->getListOfPlayersEntitiesZ(
-		EntityManagerZ::owner::player1);
-
-	const std::vector<std::shared_ptr<EntityZ>>& player2Sunflowers = entityManager->getListOfPlayersEntitiesZ(
-		EntityManagerZ::owner::player2);
-	   	
+	
 	for (; !exit;)
 	{
-		calcMap();
+		 calcMap();
 		calcEntities();
 		draw(gameView, (CHAR_INFO*)bufferGame);
 		calcMenu();
 		draw(menuView, (CHAR_INFO*) bufferMenu);
-		update();		
+		update();
+				
+		if (GetAsyncKeyState(VK_ESCAPE))exit = true;
 	}
 }

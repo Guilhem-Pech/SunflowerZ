@@ -5,8 +5,9 @@
 
 int main()
 {
-	GameZ* g = GameZ::get();
+	GameZ * g = GameZ::get();
 	g->run();
+		
 	return 0;	
 }
 

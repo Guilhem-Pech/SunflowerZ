@@ -17,8 +17,8 @@ class GameZ
 {
 private:
 	HANDLE hOutput;
-	CHAR_INFO bufferGame[SCREEN_HEIGHT][SCREEN_WIDTH];
-	CHAR_INFO bufferMenu[MENU_HEIGHT][SCREEN_WIDTH];
+	CHAR_INFO bufferGame[SCREEN_HEIGHT][SCREEN_WIDTH]{};
+	CHAR_INFO bufferMenu[MENU_HEIGHT][SCREEN_WIDTH]{};
 	
 	COORD dwBufferSizeGame = { SCREEN_WIDTH,SCREEN_HEIGHT };
 	COORD dwBufferSizeMenu = { SCREEN_WIDTH,MENU_HEIGHT };
@@ -27,7 +27,7 @@ private:
 	SMALL_RECT gameView = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
 	SMALL_RECT menuView = { 0, SCREEN_HEIGHT, SCREEN_WIDTH - 1, (SCREEN_HEIGHT - 1) + MENU_HEIGHT };
 	
-	std::unique_ptr<EntityManagerZ> entityManager;
+	EntityManagerZ* entityManager;
 	std::unique_ptr<MapZ> mapZ;
 	
 	short indexSunflowersP1 = 0;

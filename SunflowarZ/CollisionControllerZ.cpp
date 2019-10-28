@@ -6,7 +6,7 @@
 
 
 bool CollisionControllerZ::isCollisionZ(COORD posZ) {
-	return EntityManagerZ::getInstance().checkIfSomeoneHere(posZ);
+	return EntityManagerZ::getInstance()->checkIfSomeoneHere(posZ);
 }
 
 void CollisionControllerZ::spreadAoEZ(COORD posInitZ, int radiuZ, const std::vector<COORD>& posHitByAoEZ) {

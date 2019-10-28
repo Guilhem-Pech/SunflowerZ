@@ -25,11 +25,11 @@ public:
 		world, player1, player2
 	};
 	
-	static EntityManagerZ& getInstance()
+	static EntityManagerZ* getInstance()
 	{
-		static EntityManagerZ    instance; // Guaranteed to be destroyed.
+		static EntityManagerZ instance; // Guaranteed to be destroyed.
 							  // Instantiated on first use.
-		return instance;
+		return &instance;
 	}
 	EntityManagerZ(EntityManagerZ const&) = delete;
 	void operator=(EntityManagerZ const&) = delete;
