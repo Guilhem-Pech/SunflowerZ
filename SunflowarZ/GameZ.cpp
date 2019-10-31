@@ -99,7 +99,8 @@ GameZ::GameZ() : hOutput((HANDLE)GetStdHandle(STD_OUTPUT_HANDLE)), entityManager
 {
 	COORD size = { SCREEN_HEIGHT,SCREEN_WIDTH };
 	mapZ = std::make_unique<MapZ>(size);
-	
+	entityManager->collisionControllerZ->setMap(mapZ);
+
 	time.getElapsedMs(true);
 	
 	HWND consoleWindow = GetConsoleWindow();

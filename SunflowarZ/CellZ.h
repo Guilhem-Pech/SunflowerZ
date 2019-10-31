@@ -9,9 +9,11 @@ class CellZ
 private:
 	char sprite;	
 	COORD pos{};
+
 protected:
 	WORD attributes;
 public:
+	bool taggedZ;
 	virtual ~CellZ() = default;
 	void setAttribute(WORD word);
 

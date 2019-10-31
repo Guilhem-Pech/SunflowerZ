@@ -10,6 +10,7 @@ void SunflowerZ::hurtZ(int damage) {
 
 void SunflowerZ::dieZ() {
 	//TODO
+	this->~SunflowerZ();
 }
 
 void SunflowerZ::switchObjectZ(bool upZ) {
@@ -37,10 +38,15 @@ void SunflowerZ::startTurn() {
 }
 
 void SunflowerZ::initZ() {
+	this->isSFZ = true;
 	this->sprite2DZ = '*';
 	this->hpZ = 100;
 	this->movementZ = move;
 	this->idObjectUsedZ = 0;
+}
+
+void SunflowerZ::updateZ() {
+	if (this->hpZ < 1) this->dieZ();
 }
 
 SunflowerZ::SunflowerZ(COORD pos) :EntityZ() {

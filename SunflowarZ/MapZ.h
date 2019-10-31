@@ -20,6 +20,8 @@ private:
 public:
 
 	const std::vector<std::vector<std::shared_ptr<CellZ>>>& getCellsZ() const;
+
+	const std::vector<std::shared_ptr<CellZ>>& getClosestCellZ(std::shared_ptr<CellZ> actualCellZ);
 	
 	MapZ(const COORD &size);
 

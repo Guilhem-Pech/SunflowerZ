@@ -23,7 +23,6 @@ void EntityZ::setSprite2DZ(char c)
 }
 
 void EntityZ::updateZ() {
-	//TODO
 }
 
 EntityZ::EntityZ()

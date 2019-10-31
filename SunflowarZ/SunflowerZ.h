@@ -25,6 +25,8 @@ public:
 	void startTurn();
 
 	void initZ(); //initialize the SFZ with HP, movement and everything else.
+	void updateZ();
+
 
 	SunflowerZ(COORD posZ = {0,0});
 	SunflowerZ(const std::vector<ObjectZ> &inventoryListZ, COORD posZ);

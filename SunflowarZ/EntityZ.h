@@ -7,6 +7,7 @@ public:
 
 	char sprite2DZ; //the sprite of the entity
 	COORD pos2DZ; //the 2D position of the entity
+	bool isSFZ;
 	
 	char getSpriteZ(); //retrieve the sprite of the entity
 	COORD getPos2DZ(); //retrieve the position of the entity

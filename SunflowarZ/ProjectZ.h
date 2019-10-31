@@ -2,6 +2,8 @@
 #include "EntityZ.h"
 #include <Windows.h>
 
+class EntityZ;
+
 class ProjectZ : public EntityZ
 {
 public:

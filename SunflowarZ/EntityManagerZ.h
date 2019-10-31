@@ -1,12 +1,14 @@
 #pragma once
-#include <vector>
-
 #include"EntityZ.h"
-#include <memory>
 #include "EntityZFactoryZ.h"
+#include "CollisionControllerZ.h"
+
+#include <vector>
+#include <memory>
 
 
 class EntityZ;
+class CollisionControllerZ;
 
 class EntityManagerZ
 {
@@ -15,11 +17,14 @@ private:
 
 	std::vector<std::shared_ptr<EntityZ>> listOfPlayers1Entities;
 	std::vector<std::shared_ptr<EntityZ>> listOfPlayers2Entities;
+
 	
 private:
-	EntityManagerZ() {}
+	EntityManagerZ();
 
 public:
+	std::unique_ptr<CollisionControllerZ> collisionControllerZ; //maybe a better solution but for now...
+
 	enum class owner
 	{
 		world, player1, player2
@@ -37,6 +42,7 @@ public:
 
 	const std::vector<std::shared_ptr<EntityZ>> & getListOfEntitiesZ() const;
 	std::vector<std::shared_ptr<EntityZ>> getListOfPlayersEntitiesZ(owner player) const;
+	std::shared_ptr<EntityZ> getEntityHereCoord(COORD pos) const;
 
 	bool checkIfSomeoneHere(COORD coord);
 
@@ -47,4 +53,6 @@ public:
 	void removeEntity(std::shared_ptr<EntityZ> entity, owner thePreviousOwner = owner::world);
 	
 	void update();
+
+	~EntityManagerZ();
 }; 

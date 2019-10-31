@@ -28,7 +28,7 @@ private:
 	SMALL_RECT menuView = { 0, SCREEN_HEIGHT, SCREEN_WIDTH - 1, (SCREEN_HEIGHT - 1) + MENU_HEIGHT };
 	
 	EntityManagerZ* entityManager;
-	std::unique_ptr<MapZ> mapZ;
+	std::shared_ptr<MapZ> mapZ;
 	
 	short indexSunflowersP1 = 0;
 	short indexSunflowersP2 = 0;

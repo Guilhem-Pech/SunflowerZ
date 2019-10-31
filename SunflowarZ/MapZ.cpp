@@ -25,6 +25,16 @@ const std::vector<std::vector<std::shared_ptr<CellZ>>>& MapZ::getCellsZ() const
 	return cellsZ;
 }
 
+const std::vector<std::shared_ptr<CellZ>>& MapZ::getClosestCellZ(std::shared_ptr<CellZ> actualCellZ){ //retrieve all the nearest CellZ of the current CellZ
+	std::vector<std::shared_ptr<CellZ>> temp;
+	COORD actualPosZ = actualCellZ->getPos();
+	if (actualPosZ.X!=0)	temp.push_back(this->getCellZ(actualPosZ.X-1,actualPosZ.Y));
+	if (actualPosZ.X != SCREEN_WIDTH - 1)	temp.push_back(this->getCellZ(actualPosZ.X+1, actualPosZ.Y));
+	if (actualPosZ.Y != 0)	temp.push_back(this->getCellZ(actualPosZ.X, actualPosZ.Y-1));
+	if (actualPosZ.Y != SCREEN_HEIGHT - 1)	temp.push_back(this->getCellZ(actualPosZ.X, actualPosZ.Y+1));
+	return temp;
+}
+
 MapZ::MapZ(const COORD &size) :
 	size(size)
 {}

@@ -54,6 +54,7 @@ COORD ProjectZ::getNextMove2DZ() {
 
 ProjectZ::ProjectZ():EntityZ()
 {
+	this->isSFZ = false;
 }
 
 ProjectZ::~ProjectZ()

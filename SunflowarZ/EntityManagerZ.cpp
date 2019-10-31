@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "EntityManagerZ.h"
 #include "EntityZFactoryZ.h"
+
+#include <typeinfo>
 #include <algorithm>
 
 
@@ -20,6 +22,12 @@ std::vector<std::shared_ptr<EntityZ>> EntityManagerZ::getListOfPlayersEntitiesZ(
 	default:
 		return {};
 	}
+}
+
+std::shared_ptr<EntityZ> EntityManagerZ::getEntityHereCoord(COORD pos) const {
+	for (const auto& e : listOfEntities)
+		if (e->getPos2DZ().X == pos.X && e->getPos2DZ().Y == pos.Y)
+			return e;
 }
 
 
@@ -71,7 +79,6 @@ void EntityManagerZ::removeEntity(std::shared_ptr<EntityZ> entity, owner thePrev
 
 
 
-
 std::shared_ptr<EntityZ> EntityManagerZ::spawnAndRegisterReturn(const EntityZFactoryZ::EntityType description, const COORD coord, EntityManagerZ::owner owner)
 {
 	std::shared_ptr<EntityZ> ent(EntityZFactoryZ::NewEntity(description, coord));
@@ -85,6 +92,28 @@ void EntityManagerZ::update()
 {
 	for (const auto& ent : listOfEntities)
 	{
+		COORD nextMove = ent->getNextMove2DZ();
+		COORD actPos = ent->getPos2DZ();
+		if (!collisionControllerZ->isPositionValidZ(actPos)) { //is the Entity is still inside the map
+			ent->~EntityZ();
+		}
+		else if (!collisionControllerZ->isCollisionZ(nextMove)) //is the next move valid (no collisions)
+		{
+			if (ent->isSFZ && collisionControllerZ->mapZ->getCellZ(actPos.X, actPos.Y - 1)->getAttributes() != 0x0080)	nextMove = { actPos.X,actPos.Y - 1 }; //fall
+			ent->setPos2DZ(nextMove);
+		}
+		else if (!ent->isSFZ) { //in case of collision for the next move, is the entity a projectil
+			std::shared_ptr<EntityZ> temp;
+			temp = ent;
+			collisionControllerZ->impactZ(nextMove, std::static_pointer_cast<ProjectZ>(temp));
+			ent->~EntityZ();
+		}
 		ent->updateZ();
 	}
 }
+
+EntityManagerZ::EntityManagerZ() {
+	this->collisionControllerZ.reset(new CollisionControllerZ());
+}
+
+EntityManagerZ::~EntityManagerZ() = default;
